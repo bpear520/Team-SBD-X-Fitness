@@ -163,7 +163,7 @@ public class newUser implements ActionListener {
 
         if(e.getSource() == submitButton) {
             frame.dispose();
-            GUI backToGUI = new GUI();
+            loginMenu backToLogin = new loginMenu();
         }
     }
 }
