@@ -1,7 +1,5 @@
 package com.company;
 
-import com.company.inputDailyRecord;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,10 +8,12 @@ import java.awt.event.ActionListener;
 public class mainMenu implements ActionListener {
 
     private static JFrame frame;
-    private static JLabel logo;
+    private static JLabel title;
+
     private static JButton inputButton;
-    private static JButton viewButton;
-    private static JLabel userLabel;
+    private static JButton viewRecordButton;
+    private static JButton viewPersonalButton;
+    private static JButton backToLoginButton;
 
     mainMenu() {
 
@@ -37,23 +37,34 @@ public class mainMenu implements ActionListener {
 
         panel.setLayout(null);
 
-        logo = new JLabel("X-FITNESS");
-        logo.setBounds(140,0,175,50);
-        logo.setFont(new Font(null,Font.PLAIN,25));
-        panel.add(logo);
+        title = new JLabel("X-FITNESS");
+        title.setBounds(140,0,175,50);
+        title.setFont(new Font(null,Font.PLAIN,25));
+        panel.add(title);
 
         // Creating input button
         inputButton = new JButton("Input daily record");
-        inputButton.setBounds(125, 60, 150, 25);
+        inputButton.setBounds(100, 60, 200, 25);
         inputButton.addActionListener(mainMenu.this);
         panel.add(inputButton);
 
+        // Creating input button
+        viewRecordButton = new JButton("View daily fitness record");
+        viewRecordButton.setBounds(100, 100, 200, 25);
+        viewRecordButton.addActionListener(mainMenu.this);
+        panel.add(viewRecordButton);
 
         // Creating input button
-        viewButton = new JButton("View records");
-        viewButton.setBounds(125, 90, 150, 25);
+        viewPersonalButton = new JButton("View personal record");
+        viewPersonalButton.setBounds(100, 140, 200, 25);
 //        viewButton.addActionListener(new GUI());
-        panel.add(viewButton);
+        panel.add(viewPersonalButton);
+
+        // Creating input button
+        backToLoginButton = new JButton("Back to login");
+        backToLoginButton.setBounds(100, 180, 200, 25);
+        backToLoginButton.addActionListener(mainMenu.this);
+        panel.add(backToLoginButton);
     }
 
     @Override
@@ -62,6 +73,16 @@ public class mainMenu implements ActionListener {
         if(e.getSource() == inputButton) {
             frame.dispose();
             inputDailyRecord dailyRecord = new inputDailyRecord();
+        }
+
+        if(e.getSource() == viewRecordButton) {
+            frame.dispose();
+            viewFitnessRecord viewFitRec = new viewFitnessRecord();
+        }
+
+        if(e.getSource() == backToLoginButton) {
+            frame.dispose();
+            loginMenu backToLogin = new loginMenu();
         }
     }
 }
