@@ -9,13 +9,18 @@ public class inputDailyRecord implements ActionListener {
 
     private static JFrame frame;
     private static JLabel title;
+
     private static JLabel calorieLabel;
-    private static JTextField userCalories;
     private static JLabel workoutLabel;
-    private static JCheckBox workedOut;
-    private static String[] sleepQuality = {"Piss Poor","Okay","Great"};
     private static JLabel sleepLabel;
+
+    private static JTextField userCalories;
+
+    private static JCheckBox workedOut;
+
+    private static String[] sleepQuality = {"Piss Poor","Okay","Great"};
     private static JComboBox sleepType;
+
     private static JButton submitButton;
 
     inputDailyRecord() {
