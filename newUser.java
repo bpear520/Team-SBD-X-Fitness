@@ -52,7 +52,7 @@ public class newUser implements ActionListener {
 
         frame = new JFrame();
 
-        frame.setSize(420, 420);
+        frame.setSize(420, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
