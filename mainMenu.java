@@ -55,7 +55,7 @@ public class mainMenu implements ActionListener {
         // Creating input button
         viewPersonalButton = new JButton("View personal record");
         viewPersonalButton.setBounds(100, 140, 200, 25);
-//        viewButton.addActionListener(new GUI());
+        viewPersonalButton.addActionListener(mainMenu.this);
         panel.add(viewPersonalButton);
 
         // Creating input button
@@ -76,6 +76,11 @@ public class mainMenu implements ActionListener {
         if(e.getSource() == viewRecordButton) {
             frame.dispose();
             viewFitnessRecord viewFitRec = new viewFitnessRecord();
+        }
+        
+        if(e.getSource() == viewPersonalButton) {
+            frame.dispose();
+            viewPersonalRecord viewPerRec = new viewPersonalRecord();
         }
 
         if(e.getSource() == backToLoginButton) {
