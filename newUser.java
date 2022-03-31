@@ -1,7 +1,14 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class newUser implements ActionListener {
 
@@ -188,6 +195,31 @@ public class newUser implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == submitButton) {
+
+            String firstName = userFirstName.getText();
+            String lastName = userSurname.getText();
+            String otherName = userOtherName.getText();
+            String title = (String)titleType.getSelectedItem();
+            String gender = (String)genderType.getSelectedItem();
+            int DOB = Integer.parseInt(userBirth.getText());
+            String depart = userDepartment.getText();
+
+            int height = Integer.parseInt(userHeight.getText());
+            int curWeight = Integer.parseInt(userCurrentWeight.getText());
+            int goalWeight = Integer.parseInt(userGoalWeight.getText());
+            String password = userPassword.getText();
+            boolean admin = isAdmin.isSelected();
+
+
+            PersonalRecord newPR = new PersonalRecord(lastName, firstName, otherName, gender, title, DOB, depart,
+                    height, curWeight, goalWeight);
+
+            if(admin) {
+                Administrator admn = new Administrator(newPR, password);
+            } else {
+                Employee emp = new Employee(newPR, password);
+            }
+
             frame.dispose();
             loginMenu backToLogin = new loginMenu();
         }
