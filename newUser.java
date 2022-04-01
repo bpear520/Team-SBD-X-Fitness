@@ -8,9 +8,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class newUser implements ActionListener {
+public class newUser extends Display implements ActionListener {
 
     private static JFrame frame;
     private static JLabel title;
@@ -36,17 +37,19 @@ public class newUser implements ActionListener {
     private static JTextField userHeight;
     private static JTextField userCurrentWeight;
     private static JTextField userGoalWeight;
-    private static JTextField userPassword;
+    private static JPasswordField userPassword;
 
     private static JCheckBox isAdmin;
 
     private static String[] titleChoice = {"Mr","Mrs","Miss"};
     private static String[] genderChoice = {"Male","Female"};
 
-    private static JComboBox titleType;
-    private static JComboBox genderType;
+    private static JComboBox<String> titleType;
+    private static JComboBox<String> genderType;
 
     private static JButton submitButton;
+
+    Controller controller = Controller.getInstance();
 
     newUser() {
 
@@ -170,7 +173,7 @@ public class newUser implements ActionListener {
         passwordLabel.setBounds(10,360,120,25);
         panel.add(passwordLabel);
 
-        userPassword = new JTextField(20);
+        userPassword = new JPasswordField(20);
         userPassword.setBounds(150,360,85,25); //20
         panel.add(userPassword);
 
@@ -201,27 +204,28 @@ public class newUser implements ActionListener {
             String otherName = userOtherName.getText();
             String title = (String)titleType.getSelectedItem();
             String gender = (String)genderType.getSelectedItem();
-            int DOB = Integer.parseInt(userBirth.getText());
+            String DOB = userBirth.getText();
             String depart = userDepartment.getText();
 
             int height = Integer.parseInt(userHeight.getText());
             int curWeight = Integer.parseInt(userCurrentWeight.getText());
             int goalWeight = Integer.parseInt(userGoalWeight.getText());
-            String password = userPassword.getText();
+            char[] password = userPassword.getPassword();
             boolean admin = isAdmin.isSelected();
 
-
-            PersonalRecord newPR = new PersonalRecord(lastName, firstName, otherName, gender, title, DOB, depart,
+            PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart,
                     height, curWeight, goalWeight);
 
             if(admin) {
-                Administrator admn = new Administrator(newPR, password);
+                Administrator admn = new Administrator(null, newPR, String.valueOf(password));
+                controller.createNewUser(admn);
             } else {
-                Employee emp = new Employee(newPR, password);
+                Employee emp = new Employee(null, newPR, String.valueOf(password));
+                controller.createNewUser(emp);
             }
-
+            controller.setCurrentUser(firstName, String.valueOf(password));
             frame.dispose();
-            loginMenu backToLogin = new loginMenu();
+            displayLogin();
         }
     }
 }
