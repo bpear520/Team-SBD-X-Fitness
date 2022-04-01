@@ -6,11 +6,6 @@ import java.awt.event.ActionListener;
 public class inputDailyRecord implements ActionListener {
 
     private static JFrame frame;
-    private static JLabel title;
-
-    private static JLabel calorieLabel;
-    private static JLabel workoutLabel;
-    private static JLabel sleepLabel;
 
     private static JTextField userCalories;
 
@@ -27,6 +22,8 @@ public class inputDailyRecord implements ActionListener {
 
         frame.setSize(420, 420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+
 
         JPanel panel = new JPanel();
         // adding panel to frame
@@ -40,34 +37,37 @@ public class inputDailyRecord implements ActionListener {
 
     private void placeComponents(JPanel panel) {
 
+        JLabel label;
         panel.setLayout(null);
+        Color color = new Color(103,146,103);
+        panel.setBackground(color);
 
-        title = new JLabel("DAILY RECORD");
-        title.setBounds(100,0,200,50);
-        title.setFont(new Font(null,Font.PLAIN,25));
-        panel.add(title);
+        //Placing labels
+        label = new JLabel("DAILY RECORD");
+        label.setBounds(100,0,200,50);
+        label.setFont(new Font(null,Font.PLAIN,25));
+        panel.add(label);
 
+        label = new JLabel("Calories Consumed:");
+        label.setBounds(10,60,120,25);
+        panel.add(label);
 
-        // Creating JLabel
-        calorieLabel = new JLabel("Calories Consumed:");
-        calorieLabel.setBounds(10,60,120,25);
-        panel.add(calorieLabel);
+        label = new JLabel("Did you workout?");
+        label.setBounds(10,90,120,25);
+        panel.add(label);
 
+        label = new JLabel("How was your sleep?");
+        label.setBounds(10,120,130,25);
+        panel.add(label);
+
+        //Creating user fields
         userCalories = new JTextField(20);
         userCalories.setBounds(150,60,85,25); //20
         panel.add(userCalories);
 
-        workoutLabel = new JLabel("Did you workout?");
-        workoutLabel.setBounds(10,90,120,25);
-        panel.add(workoutLabel);
-
         workedOut = new JCheckBox();
         workedOut.setBounds(150, 90, 25, 25);
         panel.add(workedOut);
-
-        sleepLabel = new JLabel("How was your sleep?");
-        sleepLabel.setBounds(10,120,130,25);
-        panel.add(sleepLabel);
 
         sleepType = new JComboBox(sleepQuality);
         sleepType.setBounds(150, 120, 65, 25);
@@ -80,7 +80,7 @@ public class inputDailyRecord implements ActionListener {
         panel.add(submitButton);
 
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
