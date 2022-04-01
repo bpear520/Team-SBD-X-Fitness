@@ -11,10 +11,7 @@ import javax.swing.JTextField;
 
 public class loginMenu extends Display implements ActionListener {
 
-    private static JLabel userLabel;
-    private static JLabel imageLabel;
     private static JTextField userText;
-    private static JLabel passwordLabel;
     private static JPasswordField passwordText;
     private static JButton loginButton;
     private static JLabel success;
@@ -29,8 +26,10 @@ public class loginMenu extends Display implements ActionListener {
         // Creating instance of JFrame
         frame = new JFrame("X-Fitness Login");
         // Setting the width and height of frame
-        frame.setSize(420, 420);
+        frame.setSize(400, 420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+
 
         JPanel panel = new JPanel();
         // adding panel to frame
@@ -39,48 +38,53 @@ public class loginMenu extends Display implements ActionListener {
         placeComponents(panel);
 
         frame.setVisible(true);
+
     }
 
 
     private void placeComponents(JPanel panel) {
 
+        JLabel label;
         panel.setLayout(null);
+
+        Color color = new Color(103,146,103);
+        panel.setBackground(color);
 
         ImageIcon image = new ImageIcon("dude.png");
 
         // Creating image
-        imageLabel = new JLabel();
-        imageLabel.setBounds(65,20,210,210); //20
+        JLabel imageLabel = new JLabel();
+        imageLabel.setBounds(80,20,210,210); //20
         imageLabel.setIcon(image);
         panel.add(imageLabel);
 
-        // Creating JLabel
-        userLabel = new JLabel("User");
-        userLabel.setBounds(10,250,80,25);
-        panel.add(userLabel);
+        //Creating labels for screen
+        label = new JLabel("User");
+        label.setBounds(10,250,80,25);
+        panel.add(label);
 
+        label = new JLabel("Password");
+        label.setBounds(10,280,80,25); //50
+        panel.add(label);
+
+        //Creating user text fields
         userText = new JTextField(20);
         userText.setBounds(100,250,165,25); //20
         panel.add(userText);
-
-        passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10,280,80,25); //50
-        panel.add(passwordLabel);
 
         passwordText = new JPasswordField(20);
         passwordText.setBounds(100,280,165,25); //50
         panel.add(passwordText);
 
-
         // Creating login button
         loginButton = new JButton("login");
-        loginButton.setBounds(25, 320, 80, 25); //80
+        loginButton.setBounds(25, 320, 125, 25); //80
         loginButton.addActionListener(loginMenu.this);
         panel.add(loginButton);
 
         // Creating new user button
         newUserButton = new JButton("New User");
-        newUserButton.setBounds(125, 320, 100, 25); //80
+        newUserButton.setBounds(210, 320, 125, 25); //80
         newUserButton.addActionListener(loginMenu.this);
         panel.add(newUserButton);
 
@@ -89,7 +93,7 @@ public class loginMenu extends Display implements ActionListener {
         panel.add(success);
 
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         firstName = userText.getText().trim();
