@@ -1,16 +1,34 @@
+import java.util.ArrayList;
+
 public class Employee {
-    private DailyFitnessRecord fitnessRecord;
+    private ArrayList<DailyFitnessRecord> dailyFitnessRecords = new ArrayList<DailyFitnessRecord>() ;
+    private int numFitnessRecords = dailyFitnessRecords.size();
     private PersonalRecord personalrecods;
     private Achievement achievements;
     private String password;
 
 
-    public Employee(DailyFitnessRecord fitnessRecord, PersonalRecord personalrecods, Achievement achievements, String password) {
+    public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, Achievement achievements, String password) {
         super();
         this.setFitnessRecord(fitnessRecord);
         this.setPersonalrecods(personalrecods);
         this.setAchievements(achievements);
         this.setPassword(password);
+
+    }
+
+    public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, String password) {
+        super();
+        this.setFitnessRecord(fitnessRecord);
+        this.setPersonalrecods(personalrecods);
+        this.setPassword(password);
+
+    }
+
+    public Employee() {}
+
+    private void setFitnessRecord(ArrayList<DailyFitnessRecord> fitnessRecord) {
+        this.dailyFitnessRecords = fitnessRecord;
 
     }
 
@@ -36,19 +54,10 @@ public class Employee {
     public void viewPreviousWeek() {}
     public void login(String username, String password) {}
 
-    /**
-     * @return the fitnessRecord
-     */
-    public DailyFitnessRecord getFitnessRecord() {
-        return fitnessRecord;
+    public ArrayList<DailyFitnessRecord> getFitnessRecords(){
+        return this.dailyFitnessRecords;
     }
 
-    /**
-     * @param fitnessRecord the fitnessRecord to set
-     */
-    public void setFitnessRecord(DailyFitnessRecord fitnessRecord) {
-        this.fitnessRecord = fitnessRecord;
-    }
 
     /**
      * @return the personalrecods
@@ -86,10 +95,24 @@ public class Employee {
     }
 
     /**
-     * @param password the password to set
+     * @param password2 the password to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password2) {
+        this.password = password2;
+    }
+
+    /**
+     * @return the numFitnessRecords
+     */
+    public int getNumFitnessRecords() {
+        return numFitnessRecords;
+    }
+
+    /**
+     * @param numFitnessRecords the numFitnessRecords to set
+     */
+    public void setNumFitnessRecords(int numFitnessRecords) {
+        this.numFitnessRecords = numFitnessRecords;
     }
 
 
