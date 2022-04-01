@@ -14,20 +14,6 @@ import javax.swing.JTextField;
 public class newUser extends Display implements ActionListener {
 
     private static JFrame frame;
-    private static JLabel title;
-
-    private static JLabel surnameLabel;
-    private static JLabel firstNameLabel;
-    private static JLabel otherNameLabel;
-    private static JLabel genderLabel;
-    private static JLabel titleLabel;
-    private static JLabel birthLabel;
-    private static JLabel departmentLabel;
-    private static JLabel heightLabel;
-    private static JLabel currentWeightLabel;
-    private static JLabel goalWeightLabel;
-    private static JLabel passwordLabel;
-    private static JLabel adminLabel;
 
     private static JTextField userSurname;
     private static JTextField userFirstName;
@@ -57,6 +43,8 @@ public class newUser extends Display implements ActionListener {
 
         frame.setSize(420, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+
 
         JPanel panel = new JPanel();
         // adding panel to frame
@@ -70,123 +58,115 @@ public class newUser extends Display implements ActionListener {
 
     private void placeComponents(JPanel panel) {
 
+        JLabel label;
         panel.setLayout(null);
+        Color color = new Color(103,146,103);
+        panel.setBackground(color);
 
-        title = new JLabel("NEW USER");
-        title.setBounds(100,0,200,50);
-        title.setFont(new Font(null,Font.PLAIN,25));
-        panel.add(title);
+        //Creating Labels
+        label = new JLabel("NEW USER");
+        label.setBounds(100,0,200,50);
+        label.setFont(new Font(null,Font.PLAIN,25));
+        panel.add(label);
 
+        label = new JLabel("First Name:");
+        label.setBounds(10,60,120,25);
+        panel.add(label);
 
-        // Creating JLabel
-        firstNameLabel = new JLabel("First Name:");
-        firstNameLabel.setBounds(10,60,120,25);
-        panel.add(firstNameLabel);
+        label = new JLabel("Surname:");
+        label.setBounds(10,90,120,25);
+        panel.add(label);
 
+        label = new JLabel("Other Name:");
+        label.setBounds(10,120,120,25);
+        panel.add(label);
+
+        label = new JLabel("Title:");
+        label.setBounds(10,150,130,25);
+        panel.add(label);
+
+        label = new JLabel("Gender:");
+        label.setBounds(10,180,130,25);
+        panel.add(label);
+
+        label = new JLabel("Date of Birth:");
+        label.setBounds(10,210,120,25);
+        panel.add(label);
+
+        label = new JLabel("Department:");
+        label.setBounds(10,240,120,25);
+        panel.add(label);
+
+        label = new JLabel("Height:");
+        label.setBounds(10,270,120,25);
+        panel.add(label);
+
+        label = new JLabel("Current Weight:");
+        label.setBounds(10,300,120,25);
+        panel.add(label);
+
+        label = new JLabel("Goal Weight:");
+        label.setBounds(10,330,120,25);
+        panel.add(label);
+
+        label = new JLabel("Password:");
+        label.setBounds(10,360,120,25);
+        panel.add(label);
+
+        label = new JLabel("Administrator:");
+        label.setBounds(10,390,130,25);
+        panel.add(label);
+
+        //Creating User Fields
         userFirstName = new JTextField(20);
         userFirstName.setBounds(150,60,85,25); //20
         panel.add(userFirstName);
-
-        // Creating JLabel
-        surnameLabel = new JLabel("Surname:");
-        surnameLabel.setBounds(10,90,120,25);
-        panel.add(surnameLabel);
 
         userSurname = new JTextField(20);
         userSurname.setBounds(150,90,85,25); //20
         panel.add(userSurname);
 
-        // Creating JLabel
-        otherNameLabel = new JLabel("Other Name:");
-        otherNameLabel.setBounds(10,120,120,25);
-        panel.add(otherNameLabel);
-
         userOtherName = new JTextField(20);
         userOtherName.setBounds(150,120,85,25); //20
         panel.add(userOtherName);
-
-        // Creating Title Choices
-        titleLabel = new JLabel("Title:");
-        titleLabel.setBounds(10,150,130,25);
-        panel.add(titleLabel);
 
         titleType = new JComboBox(titleChoice);
         titleType.setBounds(150, 150, 65, 25);
         panel.add(titleType);
 
-        // Creating Title Choices
-        genderLabel = new JLabel("Gender:");
-        genderLabel.setBounds(10,180,130,25);
-        panel.add(genderLabel);
-
         genderType = new JComboBox(genderChoice);
         genderType.setBounds(150, 180, 65, 25);
         panel.add(genderType);
-
-        // Creating JLabel
-        birthLabel = new JLabel("Date of Birth:");
-        birthLabel.setBounds(10,210,120,25);
-        panel.add(birthLabel);
 
         userBirth = new JTextField(20);
         userBirth.setBounds(150,210,85,25); //20
         panel.add(userBirth);
 
-        // Creating JLabel
-        departmentLabel = new JLabel("Department:");
-        departmentLabel.setBounds(10,240,120,25);
-        panel.add(departmentLabel);
-
         userDepartment = new JTextField(20);
         userDepartment.setBounds(150,240,85,25); //20
         panel.add(userDepartment);
-
-        // Creating JLabel
-        heightLabel = new JLabel("Height:");
-        heightLabel.setBounds(10,270,120,25);
-        panel.add(heightLabel);
 
         userHeight = new JTextField(20);
         userHeight.setBounds(150,270,85,25); //20
         panel.add(userHeight);
 
-        // Creating JLabel
-        currentWeightLabel = new JLabel("Current Weight:");
-        currentWeightLabel.setBounds(10,300,120,25);
-        panel.add(currentWeightLabel);
-
         userCurrentWeight = new JTextField(20);
         userCurrentWeight.setBounds(150,300,85,25); //20
         panel.add(userCurrentWeight);
-
-        // Creating JLabel
-        goalWeightLabel = new JLabel("Goal Weight:");
-        goalWeightLabel.setBounds(10,330,120,25);
-        panel.add(goalWeightLabel);
 
         userGoalWeight = new JTextField(20);
         userGoalWeight.setBounds(150,330,85,25); //20
         panel.add(userGoalWeight);
 
-        // Creating JLabel
-        passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(10,360,120,25);
-        panel.add(passwordLabel);
-
         userPassword = new JPasswordField(20);
         userPassword.setBounds(150,360,85,25); //20
         panel.add(userPassword);
-
-        // Creating Title Choices
-        adminLabel = new JLabel("Administrator:");
-        adminLabel.setBounds(10,390,130,25);
-        panel.add(adminLabel);
 
         isAdmin = new JCheckBox();
         isAdmin.setBounds(150, 390, 25, 25);
         panel.add(isAdmin);
 
-        // Creating login button
+        // Creating submission button
         submitButton = new JButton("submit");
         submitButton.setBounds(10, 420, 80, 25); //80
         submitButton.addActionListener(newUser.this);
