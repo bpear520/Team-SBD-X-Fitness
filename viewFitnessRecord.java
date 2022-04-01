@@ -6,14 +6,10 @@ import java.awt.event.ActionListener;
 public class viewFitnessRecord implements ActionListener {
 
     private static JFrame frame;
-    private static JLabel title;
 
-    private static JLabel caloriesLabel;
-    private static JLabel sleepQualityLabel;
-    private static JLabel workedOutLabel;
-    private static JLabel caloriesOutput;
-    private static JLabel sleepQualityOutput;
-    private static JLabel workedOutOutput;
+    private JLabel caloriesOutput;
+    private JLabel sleepQualityOutput;
+    private JLabel workedOutOutput;
 
     private static JButton backToMainButton;
     private static JButton previousWeekButton;
@@ -25,6 +21,7 @@ public class viewFitnessRecord implements ActionListener {
 
         frame.setSize(420, 420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
 
@@ -38,27 +35,34 @@ public class viewFitnessRecord implements ActionListener {
     }
 
     private void placeComponents(JPanel panel) {
+        JLabel label;
         panel.setLayout(null);
 
-        title = new JLabel("FITNESS RECORD");
-        title.setBounds(100,0,250,50);
-        title.setFont(new Font(null,Font.PLAIN,25));
-        panel.add(title);
+        Color color = new Color(103,146,103);
+        panel.setBackground(color);
 
-        // Creating JLabel
-        caloriesLabel = new JLabel("Calories:");
-        caloriesLabel.setBounds(10,60,120,25);
-        panel.add(caloriesLabel);
+        //Creating labels
+        label = new JLabel("FITNESS RECORD");
+        label.setBounds(100,0,250,50);
+        label.setFont(new Font(null,Font.PLAIN,25));
+        panel.add(label);
 
-        // Creating JLabel
+        label = new JLabel("Calories:");
+        label.setBounds(10,60,120,25);
+        panel.add(label);
+
+        label = new JLabel("Sleep Quality:");
+        label.setBounds(10,90,120,25);
+        panel.add(label);
+
+        label = new JLabel("Worked Out:");
+        label.setBounds(10,120,120,25);
+        panel.add(label);
+
+        // Creating user outputs
         caloriesOutput = new JLabel("User Calories Go Here");
         caloriesOutput.setBounds(110,60,120,25);
         panel.add(caloriesOutput);
-
-        // Creating JLabel
-        sleepQualityLabel = new JLabel("Sleep Quality:");
-        sleepQualityLabel.setBounds(10,90,120,25);
-        panel.add(sleepQualityLabel);
 
         // Creating JLabel
         sleepQualityOutput = new JLabel("User Sleep Go Here");
@@ -66,23 +70,18 @@ public class viewFitnessRecord implements ActionListener {
         panel.add(sleepQualityOutput);
 
         // Creating JLabel
-        workedOutLabel = new JLabel("Worked Out:");
-        workedOutLabel.setBounds(10,120,120,25);
-        panel.add(workedOutLabel);
-
-        // Creating JLabel
         workedOutOutput = new JLabel("User workedout Go Here");
         workedOutOutput.setBounds(110,120,120,25);
         panel.add(workedOutOutput);
 
         // Creating input button
-        previousWeekButton = new JButton("Previous Week");
+        previousWeekButton = new JButton("Previous Day");
         previousWeekButton.setBounds(10, 160, 150, 25);
         previousWeekButton.addActionListener(viewFitnessRecord.this);
         panel.add(previousWeekButton);
 
         // Creating input button
-        nextWeekButton = new JButton("Next Week");
+        nextWeekButton = new JButton("Next Day");
         nextWeekButton.setBounds(210, 160, 150, 25);
         nextWeekButton.addActionListener(viewFitnessRecord.this);
         panel.add(nextWeekButton);
