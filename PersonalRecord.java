@@ -1,25 +1,25 @@
 
 public class PersonalRecord {
 
-	private String surName;
-	private String firstName;
+    private String firstName;
+    private String surName;
 	private String otherName;
 	private String gender;
 	private String title;
-	private int	DOB;
+	private String	DOB;
 	private String department;
 	private int height;
 	private int weight;
 	private int goalWeight;
-	public PersonalRecord(String surName, String firstName, String otherName, String gender, String title, int dOB, String department,
+	public PersonalRecord(String firstName, String surName, String otherName, String gender, String title, String dOB, String department,
 			int height, int weight, int goalWeight) {
 		super();
-		this.surName = surName;
 		this.firstName = firstName;
+		this.surName = surName;
 		this.setOtherName(otherName);
 		this.gender = gender;
 		this.title = title;
-		DOB = dOB;
+		this.DOB = dOB;
 		this.department = department;
 		this.height = height;
 		this.weight = weight;
@@ -49,10 +49,10 @@ public class PersonalRecord {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getDOB() {
+	public String getDOB() {
 		return DOB;
 	}
-	public void setDOB(int dOB) {
+	public void setDOB(String dOB) {
 		DOB = dOB;
 	}
 	public String getDepartment() {
