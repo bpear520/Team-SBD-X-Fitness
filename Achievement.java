@@ -9,6 +9,9 @@ public class Achievement {
     private boolean calorieCount;
     private boolean veryGoodSleep;
     private boolean goalWeight;
+
+
+
     public boolean isDailyWorkout() {
         return dailyWorkout;
     }
