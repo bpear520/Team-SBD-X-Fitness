@@ -6,12 +6,16 @@ import java.awt.event.ActionListener;
 public class mainMenu implements ActionListener {
 
     private static JFrame frame;
-    private static JLabel title;
 
     private static JButton inputButton;
     private static JButton viewRecordButton;
     private static JButton viewPersonalButton;
+    private static JButton viewReportButton;
     private static JButton backToLoginButton;
+
+    Controller controller = Controller.getInstance();
+
+    private String user = controller.currentUser.getPassword();
 
     mainMenu() {
 
@@ -19,6 +23,7 @@ public class mainMenu implements ActionListener {
 
         frame.setSize(420, 420);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
 
@@ -32,13 +37,17 @@ public class mainMenu implements ActionListener {
     }
 
     private void placeComponents(JPanel panel) {
-
+        JLabel label;
         panel.setLayout(null);
 
-        title = new JLabel("X-FITNESS");
-        title.setBounds(140,0,175,50);
-        title.setFont(new Font(null,Font.PLAIN,25));
-        panel.add(title);
+        Color color = new Color(103,146,103);
+        panel.setBackground(color);
+
+        label = new JLabel("X-FITNESS");
+        label.setBounds(140,0,175,50);
+        label.setFont(new Font(null,Font.PLAIN,25));
+        panel.add(label);
+
 
         // Creating input button
         inputButton = new JButton("Input daily record");
@@ -58,13 +67,43 @@ public class mainMenu implements ActionListener {
         viewPersonalButton.addActionListener(mainMenu.this);
         panel.add(viewPersonalButton);
 
+//        if(administrator == true) {
+//            // Creating input button
+//            viewReportButton = new JButton("View employee reports");
+//            viewReportButton.setBounds(100, 180, 200, 25);
+//            viewReportButton.addActionListener(mainMenu.this);
+//            panel.add(viewReportButton);
+//
+//            // Creating input button
+//            backToLoginButton = new JButton("Back to login");
+//            backToLoginButton.setBounds(100, 210, 200, 25);
+//            backToLoginButton.addActionListener(mainMenu.this);
+//            panel.add(backToLoginButton);
+//        } else {
+//            // Creating input button
+//            backToLoginButton = new JButton("Back to login");
+//            backToLoginButton.setBounds(100, 180, 200, 25);
+//            backToLoginButton.addActionListener(mainMenu.this);
+//            panel.add(backToLoginButton);
+//        }
+
+        // Creating JLabel
+        label = new JLabel("Current user:");
+        label.setBounds(10,240,100,25);
+        panel.add(label);
+
+        // Creating JLabel
+        label = new JLabel("This is where the user will be");
+        label.setBounds(100,240,100,25);
+        panel.add(label);
+
         // Creating input button
         backToLoginButton = new JButton("Back to login");
         backToLoginButton.setBounds(100, 180, 200, 25);
         backToLoginButton.addActionListener(mainMenu.this);
         panel.add(backToLoginButton);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
