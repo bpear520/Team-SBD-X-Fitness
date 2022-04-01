@@ -1,7 +1,16 @@
 public class Main {
 
+    private static Controller controller;
+    private static Display display = new Display();
+
+
     public static void main(String[] args) {
-	// write your code here
-        loginMenu login = new loginMenu();
+
+        controller = Controller.getInstance();
+
+        controller.initDatabase();
+        display.displayLogin();
+
+
     }
 }
