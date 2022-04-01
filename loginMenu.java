@@ -1,8 +1,15 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class loginMenu implements ActionListener {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class loginMenu extends Display implements ActionListener {
 
     private static JLabel userLabel;
     private static JLabel imageLabel;
@@ -13,6 +20,10 @@ public class loginMenu implements ActionListener {
     private static JLabel success;
     private static JButton newUserButton;
     private static JFrame frame;
+    private String firstName;
+    private char[] password;
+
+    Controller controller = Controller.getInstance();
 
     loginMenu() {
         // Creating instance of JFrame
@@ -81,22 +92,40 @@ public class loginMenu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String user = userText.getText();
-        String password = passwordText.getText();
+        firstName = userText.getText().trim();
+        password = passwordText.getPassword();
 
         if(e.getSource() == loginButton) {
-            if (user.equals("Brock") && password.equals("1")) {
-                success.setText("Login Successful!");
-                frame.dispose();
-                mainMenu menu = new mainMenu();
+
+            if(controller.containsLogIn(firstName, String.valueOf(password))) {
+                success();
             } else {
-                success.setText("Please try again.");
+                doesNotExist();
             }
+
         }
 
         if(e.getSource() == newUserButton) {
             frame.dispose();
-            newUser newUserCreate = new newUser();
+            displayNewUser();
         }
+    }
+
+    public void success() {
+        success.setText("Login Successful!");
+        frame.dispose();
+        displayMainMenu();
+    }
+
+    public void doesNotExist() {
+        success.setText("Please try again.");
+    }
+
+    public String getfirstName() {
+        return firstName;
+    }
+
+    public String getPassWord() {
+        return String.valueOf(password);
     }
 }
