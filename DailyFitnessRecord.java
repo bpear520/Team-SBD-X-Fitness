@@ -1,14 +1,17 @@
 
 public class DailyFitnessRecord {
-    public DailyFitnessRecord(int sleepQuality, int calories, boolean workedOut) {
+
+    private String date;
+    private int sleepQuality;
+    private int calories;
+    private boolean workedOut;
+
+    public DailyFitnessRecord(String date, int sleepQuality, int calories, boolean workedOut) {
+        this.setDate(date);
         this.sleepQuality = sleepQuality;
         this.calories = calories;
         this.workedOut = workedOut;
     }
-    private int sleepQuality;
-    private int calories;
-    private boolean workedOut;
-    
     public int getSleepQuality() {
         return sleepQuality;
     }
@@ -27,5 +30,17 @@ public class DailyFitnessRecord {
     public void setWorkedOut(boolean workedOut) {
         this.workedOut = workedOut;
     }
-    
+    /**
+     * @return the date
+     */
+    public String getDate() {
+        return date;
+    }
+    /**
+     * @param date the date to set
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 }
