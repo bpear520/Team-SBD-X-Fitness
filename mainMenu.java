@@ -40,12 +40,12 @@ public class mainMenu implements ActionListener {
         JLabel label;
         panel.setLayout(null);
 
-        Color color = new Color(103,146,103);
+        Color color = new Color(103, 146, 103);
         panel.setBackground(color);
 
         label = new JLabel("X-FITNESS");
-        label.setBounds(140,0,175,50);
-        label.setFont(new Font(null,Font.PLAIN,25));
+        label.setBounds(140, 0, 175, 50);
+        label.setFont(new Font(null, Font.PLAIN, 25));
         panel.add(label);
 
 
@@ -67,64 +67,64 @@ public class mainMenu implements ActionListener {
         viewPersonalButton.addActionListener(mainMenu.this);
         panel.add(viewPersonalButton);
 
-//        if(administrator == true) {
-//            // Creating input button
-//            viewReportButton = new JButton("View employee reports");
-//            viewReportButton.setBounds(100, 180, 200, 25);
-//            viewReportButton.addActionListener(mainMenu.this);
-//            panel.add(viewReportButton);
-//
-//            // Creating input button
-//            backToLoginButton = new JButton("Back to login");
-//            backToLoginButton.setBounds(100, 210, 200, 25);
-//            backToLoginButton.addActionListener(mainMenu.this);
-//            panel.add(backToLoginButton);
-//        } else {
-//            // Creating input button
-//            backToLoginButton = new JButton("Back to login");
-//            backToLoginButton.setBounds(100, 180, 200, 25);
-//            backToLoginButton.addActionListener(mainMenu.this);
-//            panel.add(backToLoginButton);
-//        }
+        if(controller.getCurrentUser().getPersonalrecods().isAdmin()) {
+            // Creating input button
+            viewReportButton = new JButton("View employee reports");
+            viewReportButton.setBounds(100, 180, 200, 25);
+            viewReportButton.addActionListener(mainMenu.this);
+            panel.add(viewReportButton);
+
+            // Creating input button
+            backToLoginButton = new JButton("Back to login");
+            backToLoginButton.setBounds(100, 220, 200, 25);
+            backToLoginButton.addActionListener(mainMenu.this);
+            panel.add(backToLoginButton);
+        } else {
+            // Creating input button
+            backToLoginButton = new JButton("Back to login");
+            backToLoginButton.setBounds(100, 180, 200, 25);
+            backToLoginButton.addActionListener(mainMenu.this);
+            panel.add(backToLoginButton);
+        }
 
         // Creating JLabel
         label = new JLabel("Current user:");
-        label.setBounds(10,240,100,25);
+        label.setBounds(10, 260, 100, 25);
         panel.add(label);
 
         // Creating JLabel
-        label = new JLabel("This is where the user will be");
-        label.setBounds(100,240,100,25);
+        label = new JLabel(controller.getCurrentUser().getPersonalrecods().getFirstName());
+        label.setBounds(100, 260, 100, 25);
         panel.add(label);
-
-        // Creating input button
-        backToLoginButton = new JButton("Back to login");
-        backToLoginButton.setBounds(100, 180, 200, 25);
-        backToLoginButton.addActionListener(mainMenu.this);
-        panel.add(backToLoginButton);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == inputButton) {
+        if (e.getSource() == inputButton) {
             frame.dispose();
             inputDailyRecord dailyRecord = new inputDailyRecord();
         }
 
-        if(e.getSource() == viewRecordButton) {
+        if (e.getSource() == viewRecordButton) {
             frame.dispose();
             viewFitnessRecord viewFitRec = new viewFitnessRecord();
         }
-        
-        if(e.getSource() == viewPersonalButton) {
+
+        if (e.getSource() == viewPersonalButton) {
             frame.dispose();
             viewPersonalRecord viewPerRec = new viewPersonalRecord();
         }
 
-        if(e.getSource() == backToLoginButton) {
+        if (e.getSource() == viewReportButton) {
+            frame.dispose();
+            employeeReports viewReps = new employeeReports();
+        }
+
+        if (e.getSource() == backToLoginButton) {
             frame.dispose();
             loginMenu backToLogin = new loginMenu();
         }
+
     }
 }
