@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,12 +46,11 @@ public class DataBase{
 
                     DailyFitnessRecord newRec = new DailyFitnessRecord(fitnessRec_date, fitnessRec_sleepQual, fitnessRec_cal, fitnessRec_workedOut);
                     fitnessRecord.add(newRec);
-
                     j += 4;
                 }
                 String password = lineFrag[20];
 
-                PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight);
+                PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight, isAdmin);
                 if(isAdmin) {
                     Administrator newAdmin = new Administrator(fitnessRecord, pr, password);
                     employeeList.add(newAdmin);
@@ -66,6 +67,21 @@ public class DataBase{
 
         System.out.println(employeeList.size());
     }
+
+    public boolean writeToFile() {
+        try {
+            FileWriter writer = new FileWriter("x_fitness_db1.txt");
+
+            for (int i = 0; i < employeeList.size(); i++) {
+                writer.write(employeeList.get(i).formatToFile());
+            }
+            writer.close();
+            return true;
+        } catch (IOException error) {
+            return false;
+        }
+    }
+
 
     public boolean containsLogIn(String firstName, String password) {
         Employee tempEmp = new Employee();
@@ -132,6 +148,5 @@ public class DataBase{
     public void setEmployeeCount(int employeeCount) {
         this.employeeCount = employeeCount;
     }
-
 
 }
