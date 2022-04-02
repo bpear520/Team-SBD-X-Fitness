@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Employee {
     private ArrayList<DailyFitnessRecord> dailyFitnessRecords = new ArrayList<DailyFitnessRecord>() ;
     private int numFitnessRecords = dailyFitnessRecords.size();
-    private PersonalRecord personalrecods;
+    private PersonalRecord personalRecord;
     private Achievement achievements;
     private String password;
 
@@ -60,17 +60,17 @@ public class Employee {
 
 
     /**
-     * @return the personalrecods
+     * @return the personalRecords
      */
     public PersonalRecord getPersonalrecods() {
-        return personalrecods;
+        return personalRecord;
     }
 
     /**
-     * @param personalrecods the personalrecods to set
+     * @param personalrecods the personalRecords to set
      */
     public void setPersonalrecods(PersonalRecord personalrecods) {
-        this.personalrecods = personalrecods;
+        this.personalRecord = personalrecods;
     }
 
     /**
@@ -115,7 +115,30 @@ public class Employee {
         this.numFitnessRecords = numFitnessRecords;
     }
 
+    public String formatToFile() {
+        String toFile;
 
+        toFile = personalRecord.getSurName().toString().trim() + ";" +
+                 personalRecord.getFirstName().toString().trim() + ";" +
+                 personalRecord.getOtherName().toString().trim() + ";" +
+                 personalRecord.getGender().toString().trim() + ";" +
+                 personalRecord.getTitle().toString().trim() + ";" +
+                 personalRecord.getDOB().toString().trim() + ";" +
+                 personalRecord.getDepartment().toString().trim() + ";" +
+                 personalRecord.getHeight()+ ";" +
+                 personalRecord.getWeight() + ";" +
+                 personalRecord.getGoalWeight() + ";" +
+                 personalRecord.isAdmin() + ";" +
+                 numFitnessRecords + ";";
 
+        for(int i = 0; i < numFitnessRecords; i++) {
+            toFile += dailyFitnessRecords.get(i).getDate() + ";";
+            toFile += dailyFitnessRecords.get(i).getSleepQuality() + ";";
+            toFile += dailyFitnessRecords.get(i).getCalories() + ";";
+            toFile += dailyFitnessRecords.get(i).isWorkedOut() + ";";
+        }
 
+        toFile += password + ";\n";
+        return toFile;
+    }
 }
