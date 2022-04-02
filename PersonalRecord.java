@@ -11,8 +11,9 @@ public class PersonalRecord {
 	private int height;
 	private int weight;
 	private int goalWeight;
+	private boolean isAdmin;
 	public PersonalRecord(String firstName, String surName, String otherName, String gender, String title, String dOB, String department,
-			int height, int weight, int goalWeight) {
+			int height, int weight, int goalWeight, boolean isAdmin) {
 		super();
 		this.firstName = firstName;
 		this.surName = surName;
@@ -91,8 +92,32 @@ public class PersonalRecord {
     public void setOtherName(String otherName) {
         this.otherName = otherName;
     }
+    /**
+     * @return the isAdmin
+     */
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    /**
+     * @param isAdmin the isAdmin to set
+     */
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
+    public String formatToFile() {
+        String toFile = surName.toString().trim() + ";" +
+                firstName.toString().trim() + ";" +
+                otherName.toString().trim() + ";" +
+                gender.toString().trim() + ";" +
+                title.toString().trim() + ";" +
+                DOB.toString().trim() + ";" +
+                department.toString().trim() + ";" +
+                height + ";" +
+                weight + ";" +
+                goalWeight + ";" +
+                isAdmin + ";";
 
-
-
+        return toFile;
+    }
 }
