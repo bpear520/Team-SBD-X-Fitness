@@ -1,15 +1,7 @@
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class newUser extends Display implements ActionListener {
 
@@ -27,13 +19,14 @@ public class newUser extends Display implements ActionListener {
 
     private static JCheckBox isAdmin;
 
-    private static String[] titleChoice = {"Mr","Mrs","Miss"};
-    private static String[] genderChoice = {"Male","Female"};
+    private static String[] titleChoice = {"Mr", "Mrs", "Miss"};
+    private static String[] genderChoice = {"Male", "Female"};
 
     private static JComboBox<String> titleType;
     private static JComboBox<String> genderType;
 
     private static JButton submitButton;
+    private static JButton backToLoginButton;
 
     Controller controller = Controller.getInstance();
 
@@ -60,74 +53,74 @@ public class newUser extends Display implements ActionListener {
 
         JLabel label;
         panel.setLayout(null);
-        Color color = new Color(103,146,103);
+        Color color = new Color(103, 146, 103);
         panel.setBackground(color);
 
         //Creating Labels
         label = new JLabel("NEW USER");
-        label.setBounds(100,0,200,50);
-        label.setFont(new Font(null,Font.PLAIN,25));
+        label.setBounds(100, 0, 200, 50);
+        label.setFont(new Font(null, Font.PLAIN, 25));
         panel.add(label);
 
         label = new JLabel("First Name:");
-        label.setBounds(10,60,120,25);
+        label.setBounds(10, 60, 120, 25);
         panel.add(label);
 
         label = new JLabel("Surname:");
-        label.setBounds(10,90,120,25);
+        label.setBounds(10, 90, 120, 25);
         panel.add(label);
 
         label = new JLabel("Other Name:");
-        label.setBounds(10,120,120,25);
+        label.setBounds(10, 120, 120, 25);
         panel.add(label);
 
         label = new JLabel("Title:");
-        label.setBounds(10,150,130,25);
+        label.setBounds(10, 150, 130, 25);
         panel.add(label);
 
         label = new JLabel("Gender:");
-        label.setBounds(10,180,130,25);
+        label.setBounds(10, 180, 130, 25);
         panel.add(label);
 
         label = new JLabel("Date of Birth:");
-        label.setBounds(10,210,120,25);
+        label.setBounds(10, 210, 120, 25);
         panel.add(label);
 
         label = new JLabel("Department:");
-        label.setBounds(10,240,120,25);
+        label.setBounds(10, 240, 120, 25);
         panel.add(label);
 
         label = new JLabel("Height:");
-        label.setBounds(10,270,120,25);
+        label.setBounds(10, 270, 120, 25);
         panel.add(label);
 
         label = new JLabel("Current Weight:");
-        label.setBounds(10,300,120,25);
+        label.setBounds(10, 300, 120, 25);
         panel.add(label);
 
         label = new JLabel("Goal Weight:");
-        label.setBounds(10,330,120,25);
+        label.setBounds(10, 330, 120, 25);
         panel.add(label);
 
         label = new JLabel("Password:");
-        label.setBounds(10,360,120,25);
+        label.setBounds(10, 360, 120, 25);
         panel.add(label);
 
         label = new JLabel("Administrator:");
-        label.setBounds(10,390,130,25);
+        label.setBounds(10, 390, 130, 25);
         panel.add(label);
 
         //Creating User Fields
         userFirstName = new JTextField(20);
-        userFirstName.setBounds(150,60,85,25); //20
+        userFirstName.setBounds(150, 60, 85, 25); //20
         panel.add(userFirstName);
 
         userSurname = new JTextField(20);
-        userSurname.setBounds(150,90,85,25); //20
+        userSurname.setBounds(150, 90, 85, 25); //20
         panel.add(userSurname);
 
         userOtherName = new JTextField(20);
-        userOtherName.setBounds(150,120,85,25); //20
+        userOtherName.setBounds(150, 120, 85, 25); //20
         panel.add(userOtherName);
 
         titleType = new JComboBox(titleChoice);
@@ -139,27 +132,27 @@ public class newUser extends Display implements ActionListener {
         panel.add(genderType);
 
         userBirth = new JTextField(20);
-        userBirth.setBounds(150,210,85,25); //20
+        userBirth.setBounds(150, 210, 85, 25); //20
         panel.add(userBirth);
 
         userDepartment = new JTextField(20);
-        userDepartment.setBounds(150,240,85,25); //20
+        userDepartment.setBounds(150, 240, 85, 25); //20
         panel.add(userDepartment);
 
         userHeight = new JTextField(20);
-        userHeight.setBounds(150,270,85,25); //20
+        userHeight.setBounds(150, 270, 85, 25); //20
         panel.add(userHeight);
 
         userCurrentWeight = new JTextField(20);
-        userCurrentWeight.setBounds(150,300,85,25); //20
+        userCurrentWeight.setBounds(150, 300, 85, 25); //20
         panel.add(userCurrentWeight);
 
         userGoalWeight = new JTextField(20);
-        userGoalWeight.setBounds(150,330,85,25); //20
+        userGoalWeight.setBounds(150, 330, 85, 25); //20
         panel.add(userGoalWeight);
 
         userPassword = new JPasswordField(20);
-        userPassword.setBounds(150,360,85,25); //20
+        userPassword.setBounds(150, 360, 85, 25); //20
         panel.add(userPassword);
 
         isAdmin = new JCheckBox();
@@ -168,22 +161,28 @@ public class newUser extends Display implements ActionListener {
 
         // Creating submission button
         submitButton = new JButton("submit");
-        submitButton.setBounds(10, 420, 80, 25); //80
+        submitButton.setBounds(25, 420, 125, 25); //80
         submitButton.addActionListener(newUser.this);
         panel.add(submitButton);
+
+        // Creating back button
+        backToLoginButton = new JButton("Back to login");
+        backToLoginButton.setBounds(210, 420, 125, 25);
+        backToLoginButton.addActionListener(newUser.this);
+        panel.add(backToLoginButton);
 
     }
 
         @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == submitButton) {
+        if (e.getSource() == submitButton) {
 
             String firstName = userFirstName.getText();
             String lastName = userSurname.getText();
             String otherName = userOtherName.getText();
-            String title = (String)titleType.getSelectedItem();
-            String gender = (String)genderType.getSelectedItem();
+            String title = (String) titleType.getSelectedItem();
+            String gender = (String) genderType.getSelectedItem();
             String DOB = userBirth.getText();
             String depart = userDepartment.getText();
 
@@ -193,10 +192,9 @@ public class newUser extends Display implements ActionListener {
             char[] password = userPassword.getPassword();
             boolean admin = isAdmin.isSelected();
 
-            PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart,
-                    height, curWeight, goalWeight, admin);
+            PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart, height, curWeight, goalWeight, admin);
 
-            if(admin) {
+            if (admin) {
                 Administrator admn = new Administrator(null, newPR, String.valueOf(password));
                 controller.createNewUser(admn);
             } else {
@@ -208,5 +206,12 @@ public class newUser extends Display implements ActionListener {
             frame.dispose();
             displayLogin();
         }
+
+        if(e.getSource() == backToLoginButton){
+            frame.dispose();
+            displayLogin();
+        }
+
+
     }
 }
