@@ -117,6 +117,7 @@ public class loginMenu extends Display implements ActionListener {
 
     public void success() {
         success.setText("Login Successful!");
+        controller.setCurrentUser(controller.getExistingUser(firstName, String.valueOf(password)));
         frame.dispose();
         displayMainMenu();
     }
