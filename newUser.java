@@ -174,7 +174,7 @@ public class newUser extends Display implements ActionListener {
 
     }
 
-    @Override
+        @Override
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource() == submitButton) {
@@ -194,7 +194,7 @@ public class newUser extends Display implements ActionListener {
             boolean admin = isAdmin.isSelected();
 
             PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart,
-                    height, curWeight, goalWeight);
+                    height, curWeight, goalWeight, admin);
 
             if(admin) {
                 Administrator admn = new Administrator(null, newPR, String.valueOf(password));
@@ -204,6 +204,7 @@ public class newUser extends Display implements ActionListener {
                 controller.createNewUser(emp);
             }
             controller.setCurrentUser(firstName, String.valueOf(password));
+            controller.writeToFile();
             frame.dispose();
             displayLogin();
         }
