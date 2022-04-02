@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Employee {
     private ArrayList<DailyFitnessRecord> dailyFitnessRecords = new ArrayList<DailyFitnessRecord>() ;
-    private int numFitnessRecords = dailyFitnessRecords.size();
+    private int numFitnessRecords;
     private PersonalRecord personalRecord;
     private Achievement achievements;
     private String password;
@@ -111,33 +111,24 @@ public class Employee {
     /**
      * @param numFitnessRecords the numFitnessRecords to set
      */
-    public void setNumFitnessRecords(int numFitnessRecords) {
-        this.numFitnessRecords = numFitnessRecords;
+    public void setNumFitnessRecords() {
+
+        if(dailyFitnessRecords == null) {
+            this.numFitnessRecords = 0;
+        } else {
+            this.numFitnessRecords = dailyFitnessRecords.size();
+        }
+
     }
 
     public String formatToFile() {
         String toFile;
-
-        toFile = personalRecord.getSurName().toString().trim() + ";" +
-                 personalRecord.getFirstName().toString().trim() + ";" +
-                 personalRecord.getOtherName().toString().trim() + ";" +
-                 personalRecord.getGender().toString().trim() + ";" +
-                 personalRecord.getTitle().toString().trim() + ";" +
-                 personalRecord.getDOB().toString().trim() + ";" +
-                 personalRecord.getDepartment().toString().trim() + ";" +
-                 personalRecord.getHeight()+ ";" +
-                 personalRecord.getWeight() + ";" +
-                 personalRecord.getGoalWeight() + ";" +
-                 personalRecord.isAdmin() + ";" +
+        setNumFitnessRecords();
+        toFile = personalRecord.formatToFile() +
                  numFitnessRecords + ";";
-
         for(int i = 0; i < numFitnessRecords; i++) {
-            toFile += dailyFitnessRecords.get(i).getDate() + ";";
-            toFile += dailyFitnessRecords.get(i).getSleepQuality() + ";";
-            toFile += dailyFitnessRecords.get(i).getCalories() + ";";
-            toFile += dailyFitnessRecords.get(i).isWorkedOut() + ";";
+            toFile = toFile +  dailyFitnessRecords.get(i).formatToFile();
         }
-
         toFile += password + ";\n";
         return toFile;
     }
