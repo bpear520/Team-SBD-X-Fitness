@@ -21,6 +21,7 @@ public class viewPersonalRecord implements ActionListener {
     private JLabel adminOutput;
 
     private static JButton backToMainButton;
+    Controller controller = Controller.getInstance();
 
     viewPersonalRecord() {
         frame = new JFrame();
@@ -102,52 +103,64 @@ public class viewPersonalRecord implements ActionListener {
         label.setBounds(10,390,130,25);
         panel.add(label);
 
-        // Creating User Outputs
-        firstNameOutput = new JLabel("#");
+        // Creating JLabel
+        firstNameOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getFirstName());
         firstNameOutput.setBounds(150,60,120,25);
         panel.add(firstNameOutput);
 
-        surnameOutput = new JLabel("#");
+        // Creating JLabel
+        surnameOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getSurName());
         surnameOutput.setBounds(150,90,120,25);
         panel.add(surnameOutput);
 
-        otherNameOutput = new JLabel("#");
+        // Creating JLabel
+        otherNameOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getOtherName());
         otherNameOutput.setBounds(150,120,120,25);
         panel.add(otherNameOutput);
 
-        genderOutput = new JLabel("#");
+
+        // Creating JLabel
+        genderOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getTitle());
         genderOutput.setBounds(150,150,120,25);
         panel.add(genderOutput);
 
-        titleOutput = new JLabel("#");
+        // Creating JLabel
+        titleOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getGender());
         titleOutput.setBounds(150,180,120,25);
         panel.add(titleOutput);
 
-        birthOutput = new JLabel("#");
+        // Creating JLabel
+        birthOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getDOB());
         birthOutput.setBounds(150,210,120,25);
         panel.add(birthOutput);
 
-        departmentOutput = new JLabel("#");
+        // Creating JLabel
+        departmentOutput = new JLabel(controller.getCurrentUser().getPersonalrecods().getDepartment());
         departmentOutput.setBounds(150,240,120,25);
         panel.add(departmentOutput);
 
-        heightOutput = new JLabel("#");
+        // Creating JLabel
+        heightOutput = new JLabel(Integer.toString(controller.getCurrentUser().getPersonalrecods().getHeight()));
         heightOutput.setBounds(150,270,120,25);
         panel.add(heightOutput);
 
-        currentWeightOutput = new JLabel("#");
+        // Creating JLabel
+        currentWeightOutput = new JLabel(Integer.toString(controller.getCurrentUser().getPersonalrecods().getWeight()));
         currentWeightOutput.setBounds(150,300,120,25);
         panel.add(currentWeightOutput);
 
-        goalWeightOutput = new JLabel("#");
+        // Creating JLabel
+        goalWeightOutput = new JLabel(Integer.toString(controller.getCurrentUser().getPersonalrecods().getGoalWeight()));
         goalWeightOutput.setBounds(150,330,120,25);
         panel.add(goalWeightOutput);
 
+        // Creating JLabel
         passwordOutput = new JLabel("#");
         passwordOutput.setBounds(150,360,120,25);
         panel.add(passwordOutput);
 
-        adminOutput = new JLabel("#");
+        // Creating JLabel
+        adminOutput = new JLabel(Boolean.toString(controller.getCurrentUser().getPersonalrecods().isAdmin()));
         adminOutput.setBounds(150,390,120,25);
         panel.add(adminOutput);
 
