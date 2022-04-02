@@ -43,4 +43,13 @@ public class DailyFitnessRecord {
         this.date = date;
     }
 
+    public String formatToFile() {
+        String toFile = date + ";" +
+                        Integer.toString(sleepQuality) + ";" +
+                        Integer.toString(calories) + ";" +
+                        Boolean.toString(workedOut) + ";";
+
+        return toFile;
+    }
+
 }
