@@ -1,9 +1,14 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainMenu implements ActionListener {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class mainMenu extends Display implements ActionListener {
 
     private static JFrame frame;
 
@@ -15,7 +20,6 @@ public class mainMenu implements ActionListener {
 
     Controller controller = Controller.getInstance();
 
-    private String user = controller.currentUser.getPassword();
 
     mainMenu() {
 
@@ -103,28 +107,26 @@ public class mainMenu implements ActionListener {
 
         if (e.getSource() == inputButton) {
             frame.dispose();
-            inputDailyRecord dailyRecord = new inputDailyRecord();
+            displayInputDailyRecord();
         }
 
         if (e.getSource() == viewRecordButton) {
             frame.dispose();
-            viewFitnessRecord viewFitRec = new viewFitnessRecord();
         }
 
         if (e.getSource() == viewPersonalButton) {
             frame.dispose();
-            viewPersonalRecord viewPerRec = new viewPersonalRecord();
+            displayPersonalRecord();
         }
 
         if (e.getSource() == viewReportButton) {
             frame.dispose();
-            employeeReports viewReps = new employeeReports();
+            viewAdminReports();
         }
 
         if (e.getSource() == backToLoginButton) {
             frame.dispose();
-            loginMenu backToLogin = new loginMenu();
+            displayLogin();
         }
-
     }
 }
