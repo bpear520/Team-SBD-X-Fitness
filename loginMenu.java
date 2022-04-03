@@ -47,8 +47,8 @@ public class loginMenu extends Display implements ActionListener {
         JLabel label;
         panel.setLayout(null);
 
-        Color color = new Color(103,146,103);
-        panel.setBackground(color);
+       // Color color = new Color(103,146,103);
+        //panel.setBackground(color);
 
         ImageIcon image = new ImageIcon("dude.png");
 
@@ -93,7 +93,7 @@ public class loginMenu extends Display implements ActionListener {
         panel.add(success);
 
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         firstName = userText.getText().trim();
@@ -106,7 +106,6 @@ public class loginMenu extends Display implements ActionListener {
             } else {
                 doesNotExist();
             }
-
         }
 
         if(e.getSource() == newUserButton) {
