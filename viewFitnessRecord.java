@@ -18,6 +18,7 @@ public class viewFitnessRecord extends Display implements ActionListener {
     private JLabel sleepQualityOutput;
     private JLabel workedOutOutput;
     private JLabel recordStatus;
+    private JLabel dateOutput;
 
     Controller controller = Controller.getInstance();
     private int recordIndex = controller.getCurrentUser().getNumFitnessRecords() - 1;
@@ -79,9 +80,9 @@ public class viewFitnessRecord extends Display implements ActionListener {
 
         if(hasRecord()) {
             // Creating user outputs
-            label = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getDate());
-            label.setBounds(125, 60, 120, 25);
-            panel.add(label);
+            dateOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getDate());
+            dateOutput.setBounds(145, 60, 120, 25);
+            panel.add(dateOutput);
 
             caloriesOutput = new JLabel(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getCalories()));
             caloriesOutput.setBounds(110, 100, 120, 25);
@@ -98,9 +99,9 @@ public class viewFitnessRecord extends Display implements ActionListener {
             panel.add(workedOutOutput);
         } else {
          // Creating user outputs
-            label = new JLabel(" ");
-            label.setBounds(125, 60, 120, 25);
-            panel.add(label);
+            dateOutput = new JLabel(" ");
+            dateOutput.setBounds(145, 60, 120, 25);
+            panel.add(dateOutput);
 
             caloriesOutput = new JLabel(" ");
             caloriesOutput.setBounds(110, 100, 120, 25);
@@ -148,14 +149,14 @@ public class viewFitnessRecord extends Display implements ActionListener {
         if(e.getSource() == previousWeekButton) {
             if(recordIndex > 0) {
                 recordIndex--;
-
+                updateOutputBoxes();
             }
         }
 
         if(e.getSource() == nextWeekButton) {
             if(recordIndex < controller.getCurrentUser().getNumFitnessRecords() - 1) {
                 recordIndex++;
-
+                updateOutputBoxes();
             }
         }
 
@@ -163,5 +164,12 @@ public class viewFitnessRecord extends Display implements ActionListener {
             frame.dispose();
             displayMainMenu();
         }
+    }
+
+    public void updateOutputBoxes(){
+        dateOutput.setText(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getDate());
+        caloriesOutput.setText(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getCalories()));
+        sleepQualityOutput.setText(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getSleepQuality());
+        workedOutOutput.setText(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).isWorkedOut()));
     }
 }
