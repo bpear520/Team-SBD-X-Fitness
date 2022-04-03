@@ -1,24 +1,15 @@
 
 public class Achievement {
 
-    private boolean dailyWorkout;
     private boolean tenDailyWorkout;
     private boolean twentyDailyWorkout;
-    private boolean calorieCount;
-    private boolean veryGoodSleep;
+    private boolean threePerfectDays;
+    private boolean sixPerfectDays;
+    private boolean twentyPerfectDays;
     private boolean goalWeight;
-
-
 
     public Achievement() {
 
-    }
-
-    public boolean isDailyWorkout() {
-        return dailyWorkout;
-    }
-    public void setDailyWorkout(boolean dailyWorkout) {
-        this.dailyWorkout = dailyWorkout;
     }
 
     public boolean isTenDailyWorkout() {
@@ -33,18 +24,7 @@ public class Achievement {
     public void setTwentyDailyWorkout(boolean twentyDailyWorkout) {
         this.twentyDailyWorkout = twentyDailyWorkout;
     }
-    public boolean isCalorieCount() {
-        return calorieCount;
-    }
-    public void setCalorieCount(boolean calorieCount) {
-        this.calorieCount = calorieCount;
-    }
-    public boolean isVeryGoodSleep() {
-        return veryGoodSleep;
-    }
-    public void setVeryGoodSleep(boolean veryGoodSleep) {
-        this.veryGoodSleep = veryGoodSleep;
-    }
+
     public boolean isGoalWeight() {
         return goalWeight;
     }
