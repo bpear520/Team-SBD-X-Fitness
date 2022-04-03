@@ -6,6 +6,11 @@ public class Display {
     private mainMenu menuScreen;
     private newUser newUserScreen;
     private loginMenu loginScreen;
+    private inputDailyRecord dailyRecord;
+    private viewFitnessRecord viewFitRec;
+    private viewPersonalRecord viewPerRec;
+    private employeeReports viewReps;
+
 
     public void displayData() {}
     public void displayNextWeek() {}
@@ -15,10 +20,22 @@ public class Display {
     public void displayEmployeeList() {}
     public void displayReport() {}
 
+    public void viewAdminReports() {
+        viewReps = new employeeReports();
+    }
 
+    public void displayPersonalRecord() {
+        viewPerRec = new viewPersonalRecord();
 
+    }
 
+    public void displayViewFitnessRecord() {
+        viewFitRec = new viewFitnessRecord();
+    }
 
+    public void displayInputDailyRecord() {
+        dailyRecord = new inputDailyRecord();
+    }
     public void displayNewUser() {
         newUserScreen = new newUser();
     }
