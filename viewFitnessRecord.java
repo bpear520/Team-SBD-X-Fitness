@@ -1,9 +1,14 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class viewFitnessRecord implements ActionListener {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class viewFitnessRecord extends Display implements ActionListener {
 
     private static JFrame frame;
     private static JButton backToMainButton;
@@ -12,6 +17,11 @@ public class viewFitnessRecord implements ActionListener {
     private JLabel caloriesOutput;
     private JLabel sleepQualityOutput;
     private JLabel workedOutOutput;
+    private JLabel recordStatus;
+
+    Controller controller = Controller.getInstance();
+    private int recordIndex = controller.getCurrentUser().getNumFitnessRecords() - 1;
+    JPanel panel = new JPanel();
 
     viewFitnessRecord() {
 
@@ -21,8 +31,6 @@ public class viewFitnessRecord implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-
         // adding panel to frame
         frame.add(panel);
 
@@ -30,6 +38,14 @@ public class viewFitnessRecord implements ActionListener {
 
         frame.setVisible(true);
 
+    }
+
+    private boolean hasRecord() {
+        if(controller.currentUser.getFitnessRecords() == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void placeComponents(JPanel panel) {
@@ -61,24 +77,51 @@ public class viewFitnessRecord implements ActionListener {
         label.setBounds(10, 180, 120, 25);
         panel.add(label);
 
-        // Creating user outputs
-        label = new JLabel("###");
-        label.setBounds(125, 60, 120, 25);
-        panel.add(label);
+        if(hasRecord()) {
+            // Creating user outputs
+            label = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getDate());
+            label.setBounds(125, 60, 120, 25);
+            panel.add(label);
 
-        caloriesOutput = new JLabel("###");
-        caloriesOutput.setBounds(110, 100, 120, 25);
-        panel.add(caloriesOutput);
+            caloriesOutput = new JLabel(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getCalories()));
+            caloriesOutput.setBounds(110, 100, 120, 25);
+            panel.add(caloriesOutput);
 
-        // Creating JLabel
-        sleepQualityOutput = new JLabel("###");
-        sleepQualityOutput.setBounds(110, 140, 120, 25);
-        panel.add(sleepQualityOutput);
+            // Creating JLabel
+            sleepQualityOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getSleepQuality());
+            sleepQualityOutput.setBounds(110, 140, 120, 25);
+            panel.add(sleepQualityOutput);
 
-        // Creating JLabel
-        workedOutOutput = new JLabel("###");
-        workedOutOutput.setBounds(110, 180, 120, 25);
-        panel.add(workedOutOutput);
+            // Creating JLabel
+            workedOutOutput = new JLabel(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).isWorkedOut()));
+            workedOutOutput.setBounds(110, 180, 120, 25);
+            panel.add(workedOutOutput);
+        } else {
+         // Creating user outputs
+            label = new JLabel(" ");
+            label.setBounds(125, 60, 120, 25);
+            panel.add(label);
+
+            caloriesOutput = new JLabel(" ");
+            caloriesOutput.setBounds(110, 100, 120, 25);
+            panel.add(caloriesOutput);
+
+            // Creating JLabel
+            sleepQualityOutput = new JLabel(" ");
+            sleepQualityOutput.setBounds(110, 140, 120, 25);
+            panel.add(sleepQualityOutput);
+
+            // Creating JLabel
+            workedOutOutput = new JLabel(" ");
+            workedOutOutput.setBounds(110, 180, 120, 25);
+            panel.add(workedOutOutput);
+
+            recordStatus = new JLabel("Input Your First Record");
+            recordStatus.setBounds(10,350,300,25); //110
+            panel.add(recordStatus);
+        }
+
+
 
         // Creating input button
         previousWeekButton = new JButton("Previous Day");
@@ -102,10 +145,23 @@ public class viewFitnessRecord implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == previousWeekButton) {
+            if(recordIndex > 0) {
+                recordIndex--;
+
+            }
+        }
+
+        if(e.getSource() == nextWeekButton) {
+            if(recordIndex < controller.getCurrentUser().getNumFitnessRecords() - 1) {
+                recordIndex++;
+
+            }
+        }
 
         if (e.getSource() == backToMainButton) {
             frame.dispose();
-            mainMenu backToMainMenu = new mainMenu();
+            displayMainMenu();
         }
     }
 }
