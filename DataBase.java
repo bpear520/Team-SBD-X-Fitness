@@ -40,7 +40,7 @@ public class DataBase{
                 for(int i = 0; i < numFitnessRecords; i++) {
 
                     String fitnessRec_date = lineFrag[j];
-                    int fitnessRec_sleepQual = Integer.parseInt(lineFrag[j+1]);
+                    String fitnessRec_sleepQual = lineFrag[j+1];
                     int fitnessRec_cal = Integer.parseInt(lineFrag[j+2]);
                     boolean fitnessRec_workedOut = Boolean.parseBoolean(lineFrag[j+3]);
 
@@ -51,13 +51,10 @@ public class DataBase{
                 String password = lineFrag[20];
 
                 PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight, isAdmin);
-                if(isAdmin) {
-                    Administrator newAdmin = new Administrator(fitnessRecord, pr, password);
-                    employeeList.add(newAdmin);
-                } else {
-                    Employee newEmp = new Employee(fitnessRecord, pr, password);
-                    employeeList.add(newEmp);
-                }
+
+                Employee newEmp = new Employee(fitnessRecord, pr, password);
+                employeeList.add(newEmp);
+
             }
             fileReader.close();
         } catch (FileNotFoundException  error )
@@ -81,7 +78,6 @@ public class DataBase{
             return false;
         }
     }
-
 
     public boolean containsLogIn(String firstName, String password) {
         Employee tempEmp = new Employee();
@@ -120,7 +116,14 @@ public class DataBase{
         return temp.getPassword().equals(password);
     }
 
+    public int getNumberOfEmployees() {
+        if(employeeList == null) {
+            return 0;
+        } else {
+            return employeeList.size();
+        }
 
+    }
 
 
    //*******************GETTERS AND SETTERS*************************//
