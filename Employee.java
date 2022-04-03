@@ -105,6 +105,7 @@ public class Employee {
      * @return the numFitnessRecords
      */
     public int getNumFitnessRecords() {
+        setNumFitnessRecords();
         return numFitnessRecords;
     }
 
