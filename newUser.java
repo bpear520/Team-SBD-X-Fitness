@@ -1,7 +1,16 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class newUser extends Display implements ActionListener {
 
@@ -185,7 +194,6 @@ public class newUser extends Display implements ActionListener {
             String gender = (String) genderType.getSelectedItem();
             String DOB = userBirth.getText();
             String depart = userDepartment.getText();
-
             int height = Integer.parseInt(userHeight.getText());
             int curWeight = Integer.parseInt(userCurrentWeight.getText());
             int goalWeight = Integer.parseInt(userGoalWeight.getText());
@@ -193,14 +201,8 @@ public class newUser extends Display implements ActionListener {
             boolean admin = isAdmin.isSelected();
 
             PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart, height, curWeight, goalWeight, admin);
-
-            if (admin) {
-                Administrator admn = new Administrator(null, newPR, String.valueOf(password));
-                controller.createNewUser(admn);
-            } else {
-                Employee emp = new Employee(null, newPR, String.valueOf(password));
-                controller.createNewUser(emp);
-            }
+            Employee emp = new Employee(null, newPR, String.valueOf(password));
+            controller.createNewUser(emp);
             controller.setCurrentUser(firstName, String.valueOf(password));
             controller.writeToFile();
             frame.dispose();
@@ -211,7 +213,5 @@ public class newUser extends Display implements ActionListener {
             frame.dispose();
             displayLogin();
         }
-
-
     }
 }
