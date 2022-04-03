@@ -1,8 +1,6 @@
 
 public class Achievement {
-    public Achievement() {
-        super();
-    }
+
     private boolean dailyWorkout;
     private boolean tenDailyWorkout;
     private boolean twentyDailyWorkout;
@@ -11,6 +9,10 @@ public class Achievement {
     private boolean goalWeight;
 
 
+
+    public Achievement() {
+
+    }
 
     public boolean isDailyWorkout() {
         return dailyWorkout;
