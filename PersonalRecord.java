@@ -25,6 +25,7 @@ public class PersonalRecord {
 		this.height = height;
 		this.weight = weight;
 		this.goalWeight = goalWeight;
+		this.isAdmin = isAdmin;
 	}
 	public String getSurName() {
 		return surName;
