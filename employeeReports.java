@@ -1,14 +1,22 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class employeeReports implements ActionListener {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class employeeReports extends Display implements ActionListener {
 
     private static JFrame frame;
     private static JButton backToMainButton;
     private static JButton prevEmpButton;
     private static JButton nextEmpButton;
+
+    Controller controller = Controller.getInstance();
+    private int numberOfEmployees = controller.getNumberOfEmployees() - 1;
 
     employeeReports(){
             frame = new JFrame();
@@ -81,7 +89,7 @@ public class employeeReports implements ActionListener {
 
             if (e.getSource() == backToMainButton) {
                 frame.dispose();
-                mainMenu backToMainMenu = new mainMenu();
+                displayMainMenu();
             }
     }
 }
