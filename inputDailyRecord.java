@@ -1,9 +1,23 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class inputDailyRecord implements ActionListener {
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+
+public class inputDailyRecord extends Display implements ActionListener {
+
+    Controller controller = Controller.getInstance();
 
     private static JFrame frame;
 
@@ -93,13 +107,27 @@ public class inputDailyRecord implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
+            Date thisDate = new Date();
+            SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y");
+            String date = dateForm.format(thisDate);
+
+            int calories = Integer.parseInt(userCalories.getText());
+            boolean wrkedOut = workedOut.isSelected();
+
+            String sleepQual = sleepQuality[sleepType.getSelectedIndex()];
+
+            DailyFitnessRecord newRec = new DailyFitnessRecord(date, sleepQual, calories, wrkedOut);
+
+            controller.getCurrentUser().getFitnessRecords().add(newRec);
+            controller.writeToFile();
+
             frame.dispose();
-            mainMenu backToMainMenu = new mainMenu();
+            displayMainMenu();
         }
 
         if (e.getSource() == backToMainButton) {
             frame.dispose();
-            mainMenu backToMainMenu = new mainMenu();
+            displayMainMenu();
         }
     }
 }
