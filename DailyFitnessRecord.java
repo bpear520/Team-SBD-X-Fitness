@@ -2,20 +2,20 @@
 public class DailyFitnessRecord {
 
     private String date;
-    private int sleepQuality;
+    private String sleepQuality;
     private int calories;
     private boolean workedOut;
 
-    public DailyFitnessRecord(String date, int sleepQuality, int calories, boolean workedOut) {
+    public DailyFitnessRecord(String date, String sleepQuality, int calories, boolean workedOut) {
         this.setDate(date);
         this.sleepQuality = sleepQuality;
         this.calories = calories;
         this.workedOut = workedOut;
     }
-    public int getSleepQuality() {
+    public String getSleepQuality() {
         return sleepQuality;
     }
-    public void setSleepQuality(int sleepQuality) {
+    public void setSleepQuality(String sleepQuality) {
         this.sleepQuality = sleepQuality;
     }
     public int getCalories() {
@@ -45,7 +45,7 @@ public class DailyFitnessRecord {
 
     public String formatToFile() {
         String toFile = date + ";" +
-                        Integer.toString(sleepQuality) + ";" +
+                        sleepQuality + ";" +
                         Integer.toString(calories) + ";" +
                         Boolean.toString(workedOut) + ";";
 
