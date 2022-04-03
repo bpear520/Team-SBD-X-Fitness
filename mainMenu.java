@@ -1,12 +1,7 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class mainMenu extends Display implements ActionListener {
 
@@ -15,6 +10,7 @@ public class mainMenu extends Display implements ActionListener {
     private static JButton inputButton;
     private static JButton viewRecordButton;
     private static JButton viewPersonalButton;
+    private static JButton viewAchievementsButton;
     private static JButton viewReportButton;
     private static JButton backToLoginButton;
 
@@ -71,34 +67,40 @@ public class mainMenu extends Display implements ActionListener {
         viewPersonalButton.addActionListener(mainMenu.this);
         panel.add(viewPersonalButton);
 
+        // Creating input button
+        viewAchievementsButton = new JButton("View Achievements");
+        viewAchievementsButton.setBounds(100, 180, 200, 25);
+        viewAchievementsButton.addActionListener(mainMenu.this);
+        panel.add(viewAchievementsButton);
+
         if(controller.getCurrentUser().getPersonalrecods().isAdmin()) {
             // Creating input button
             viewReportButton = new JButton("View employee reports");
-            viewReportButton.setBounds(100, 180, 200, 25);
+            viewReportButton.setBounds(100, 220, 200, 25);
             viewReportButton.addActionListener(mainMenu.this);
             panel.add(viewReportButton);
 
             // Creating input button
             backToLoginButton = new JButton("Back to login");
-            backToLoginButton.setBounds(100, 220, 200, 25);
+            backToLoginButton.setBounds(100, 260, 200, 25);
             backToLoginButton.addActionListener(mainMenu.this);
             panel.add(backToLoginButton);
         } else {
             // Creating input button
             backToLoginButton = new JButton("Back to login");
-            backToLoginButton.setBounds(100, 180, 200, 25);
+            backToLoginButton.setBounds(100, 220, 200, 25);
             backToLoginButton.addActionListener(mainMenu.this);
             panel.add(backToLoginButton);
         }
 
         // Creating JLabel
         label = new JLabel("Current user:");
-        label.setBounds(10, 260, 100, 25);
+        label.setBounds(10, 300, 100, 25);
         panel.add(label);
 
         // Creating JLabel
         label = new JLabel(controller.getCurrentUser().getPersonalrecods().getFirstName());
-        label.setBounds(100, 260, 100, 25);
+        label.setBounds(100, 300, 100, 25);
         panel.add(label);
     }
 
@@ -123,6 +125,11 @@ public class mainMenu extends Display implements ActionListener {
         if (e.getSource() == viewReportButton) {
             frame.dispose();
             viewAdminReports();
+        }
+
+        if (e.getSource() == viewAchievementsButton) {
+            frame.dispose();
+            viewAchievements achieve = new viewAchievements();
         }
 
         if (e.getSource() == backToLoginButton) {
