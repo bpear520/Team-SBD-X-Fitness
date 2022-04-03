@@ -112,6 +112,7 @@ public class mainMenu extends Display implements ActionListener {
 
         if (e.getSource() == viewRecordButton) {
             frame.dispose();
+            displayViewFitnessRecord();
         }
 
         if (e.getSource() == viewPersonalButton) {
