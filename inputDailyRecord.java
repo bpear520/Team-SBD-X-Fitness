@@ -111,7 +111,7 @@ public class inputDailyRecord extends Display implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
-            //try {
+            try {
                 Date thisDate = new Date();
                 SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y");
                 String date = dateForm.format(thisDate);
@@ -124,13 +124,14 @@ public class inputDailyRecord extends Display implements ActionListener {
                 DailyFitnessRecord newRec = new DailyFitnessRecord(date, sleepQual, calories, wrkedOut);
 
                 controller.getCurrentUser().getFitnessRecords().add(newRec);
+                controller.getCurrentUser().getAchievements().updateAchievements();
                 controller.writeToFile();
 
                 frame.dispose();
                 displayMainMenu();
-            //} catch (Exception a) {
-               // statusLabel.setText("*Please fill in Calories");
-            //}
+            } catch (Exception a) {
+               statusLabel.setText("*Please fill in Calories");
+            }
         }
 
         if (e.getSource() == backToMainButton) {
