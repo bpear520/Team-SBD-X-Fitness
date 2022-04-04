@@ -1,7 +1,14 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class viewAchievements extends Display implements ActionListener {
 
@@ -10,6 +17,7 @@ public class viewAchievements extends Display implements ActionListener {
 
 
     Controller controller = Controller.getInstance();
+
 
     viewAchievements(){
         frame = new JFrame();
@@ -26,6 +34,14 @@ public class viewAchievements extends Display implements ActionListener {
         placeComponents(panel);
 
         frame.setVisible(true);
+    }
+
+    private boolean hasAchievements() {
+        if(controller.getCurrentUser().getAchievements() == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void placeComponents(JPanel panel) {
@@ -71,37 +87,39 @@ public class viewAchievements extends Display implements ActionListener {
         label.setBounds(210, 140, 135, 25);
         panel.add(label);
 
-        //Creating Achievement checkers
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(155,40,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(155,80,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(155,120,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(255,40,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(255,80,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
-//        if(ACHIEVEMENT STATUS CHECK GOES HERE) {
-//            imageLabel.setBounds(255,120,50,50);
-//            imageLabel.setIcon(image);
-//            panel.add(imageLabel);
-//        }
+        if(hasAchievements()) {
+          //Creating Achievement checkers
+            if(controller.getCurrentUser().getAchievements().isTenDailyWorkout()) {
+                imageLabel.setBounds(155,40,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+            if(controller.getCurrentUser().getAchievements().isTwentyDailyWorkout()) {
+                imageLabel.setBounds(155,80,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+            if(controller.getCurrentUser().getAchievements().isThreePerfectDays()) {
+                imageLabel.setBounds(155,120,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+            if(controller.getCurrentUser().getAchievements().isSixPerfectDays()) {
+                imageLabel.setBounds(255,40,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+            if(controller.getCurrentUser().getAchievements().isTwentyPerfectDays()) {
+                imageLabel.setBounds(255,80,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+            if(controller.getCurrentUser().getAchievements().isGoalWeight()) {
+                imageLabel.setBounds(255,120,50,50);
+                imageLabel.setIcon(image);
+                panel.add(imageLabel);
+            }
+        }
 
         //Creating back to main menu button
         backToMainButton = new JButton("Back to main menu");
