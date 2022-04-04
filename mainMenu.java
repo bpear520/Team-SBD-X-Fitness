@@ -1,7 +1,12 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class mainMenu extends Display implements ActionListener {
 
@@ -129,7 +134,7 @@ public class mainMenu extends Display implements ActionListener {
 
         if (e.getSource() == viewAchievementsButton) {
             frame.dispose();
-            viewAchievements achieve = new viewAchievements();
+            displayAchievements();
         }
 
         if (e.getSource() == backToLoginButton) {
