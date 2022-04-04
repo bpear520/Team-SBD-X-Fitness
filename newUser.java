@@ -83,7 +83,7 @@ public class newUser extends Display implements ActionListener {
         label.setBounds(10, 180, 130, 25);
         panel.add(label);
 
-        label = new JLabel("Date of Birth:");
+        label = new JLabel("DOB (MM/DD/YYYY):");
         label.setBounds(10, 210, 120, 25);
         panel.add(label);
 
@@ -216,3 +216,4 @@ public class newUser extends Display implements ActionListener {
         }
     }
 }
+
