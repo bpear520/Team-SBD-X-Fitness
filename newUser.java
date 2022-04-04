@@ -1,20 +1,12 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class newUser extends Display implements ActionListener {
 
     private static JFrame frame;
+    private static JLabel statusLabel;
 
     private static JTextField userSurname;
     private static JTextField userFirstName;
@@ -67,7 +59,7 @@ public class newUser extends Display implements ActionListener {
 
         //Creating Labels
         label = new JLabel("NEW USER");
-        label.setBounds(100, 0, 200, 50);
+        label.setBounds(125, 0, 200, 50);
         label.setFont(new Font(null, Font.PLAIN, 25));
         panel.add(label);
 
@@ -180,6 +172,11 @@ public class newUser extends Display implements ActionListener {
         backToLoginButton.addActionListener(newUser.this);
         panel.add(backToLoginButton);
 
+        // Creating space for status message
+        statusLabel = new JLabel("");
+        statusLabel.setBounds(130, 35, 125, 25);
+        panel.add(statusLabel);
+
     }
 
         @Override
@@ -187,26 +184,30 @@ public class newUser extends Display implements ActionListener {
 
         if (e.getSource() == submitButton) {
 
-            String firstName = userFirstName.getText();
-            String lastName = userSurname.getText();
-            String otherName = userOtherName.getText();
-            String title = (String) titleType.getSelectedItem();
-            String gender = (String) genderType.getSelectedItem();
-            String DOB = userBirth.getText();
-            String depart = userDepartment.getText();
-            int height = Integer.parseInt(userHeight.getText());
-            int curWeight = Integer.parseInt(userCurrentWeight.getText());
-            int goalWeight = Integer.parseInt(userGoalWeight.getText());
-            char[] password = userPassword.getPassword();
-            boolean admin = isAdmin.isSelected();
+            try {
+                String firstName = userFirstName.getText();
+                String lastName = userSurname.getText();
+                String otherName = userOtherName.getText();
+                String title = (String) titleType.getSelectedItem();
+                String gender = (String) genderType.getSelectedItem();
+                String DOB = userBirth.getText();
+                String depart = userDepartment.getText();
+                int height = Integer.parseInt(userHeight.getText());
+                int curWeight = Integer.parseInt(userCurrentWeight.getText());
+                int goalWeight = Integer.parseInt(userGoalWeight.getText());
+                char[] password = userPassword.getPassword();
+                boolean admin = isAdmin.isSelected();
 
-            PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart, height, curWeight, goalWeight, admin);
-            Employee emp = new Employee(null, newPR, String.valueOf(password));
-            controller.createNewUser(emp);
-            controller.setCurrentUser(firstName, String.valueOf(password));
-            controller.writeToFile();
-            frame.dispose();
-            displayLogin();
+                PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart, height, curWeight, goalWeight, admin);
+                Employee emp = new Employee(null, newPR, String.valueOf(password));
+                controller.createNewUser(emp);
+                controller.setCurrentUser(firstName, String.valueOf(password));
+                controller.writeToFile();
+                frame.dispose();
+                displayLogin();
+            } catch (Exception a) {
+                statusLabel.setText("*Please fill in all fields");
+            }
         }
 
         if(e.getSource() == backToLoginButton){
