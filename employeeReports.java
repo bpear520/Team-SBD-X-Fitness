@@ -1,16 +1,17 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class employeeReports extends Display implements ActionListener {
 
     private static JFrame frame;
+
+    private JLabel employeeOutput;
+    private JLabel caloriesOutput;
+    private JLabel sleepQualityOutput;
+    private JLabel workoutOutput;
+
     private static JButton backToMainButton;
     private static JButton prevEmpButton;
     private static JButton nextEmpButton;
@@ -18,21 +19,21 @@ public class employeeReports extends Display implements ActionListener {
     Controller controller = Controller.getInstance();
     private int numberOfEmployees = controller.getNumberOfEmployees() - 1;
 
-    employeeReports(){
-            frame = new JFrame();
+    employeeReports() {
+        frame = new JFrame();
 
-            frame.setSize(420, 420);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLocationRelativeTo(null);
+        frame.setSize(420, 420);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
 
-            JPanel panel = new JPanel();
+        JPanel panel = new JPanel();
 
-            // adding panel to frame
-            frame.add(panel);
+        // adding panel to frame
+        frame.add(panel);
 
-            placeComponents(panel);
+        placeComponents(panel);
 
-            frame.setVisible(true);
+        frame.setVisible(true);
     }
 
     private void placeComponents(JPanel panel) {
@@ -64,6 +65,23 @@ public class employeeReports extends Display implements ActionListener {
         panel.add(label);
 
 
+        // Creating employee output labels
+        employeeOutput = new JLabel("###");
+        employeeOutput.setBounds(210, 60, 175, 25);
+        panel.add(employeeOutput);
+
+        caloriesOutput = new JLabel("###");
+        caloriesOutput.setBounds(210, 100, 175, 25);
+        panel.add(caloriesOutput);
+
+        workoutOutput = new JLabel("###");
+        workoutOutput.setBounds(210, 140, 175, 25);
+        panel.add(workoutOutput);
+
+        sleepQualityOutput = new JLabel("###");
+        sleepQualityOutput.setBounds(210, 180, 175, 25);
+        panel.add(sleepQualityOutput);
+
         // Creating input button
         prevEmpButton = new JButton("Previous Employee");
         prevEmpButton.setBounds(10, 220, 150, 25);
@@ -84,12 +102,12 @@ public class employeeReports extends Display implements ActionListener {
 
     }
 
-        @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
 
-            if (e.getSource() == backToMainButton) {
-                frame.dispose();
-                displayMainMenu();
-            }
+        if (e.getSource() == backToMainButton) {
+            frame.dispose();
+            displayMainMenu();
+        }
     }
 }
