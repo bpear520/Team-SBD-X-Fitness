@@ -1,9 +1,17 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class inputDailyRecord extends Display implements ActionListener {
@@ -103,7 +111,7 @@ public class inputDailyRecord extends Display implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
-            try {
+            //try {
                 Date thisDate = new Date();
                 SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y");
                 String date = dateForm.format(thisDate);
@@ -120,9 +128,9 @@ public class inputDailyRecord extends Display implements ActionListener {
 
                 frame.dispose();
                 displayMainMenu();
-            } catch (Exception a) {
-                statusLabel.setText("*Please fill in Calories");
-            }
+            //} catch (Exception a) {
+               // statusLabel.setText("*Please fill in Calories");
+            //}
         }
 
         if (e.getSource() == backToMainButton) {
