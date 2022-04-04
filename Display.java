@@ -10,15 +10,11 @@ public class Display {
     private viewFitnessRecord viewFitRec;
     private viewPersonalRecord viewPerRec;
     private employeeReports viewReps;
+    private viewAchievements achieve;
 
-
-    public void displayData() {}
-    public void displayNextWeek() {}
-    public void displayPrevWeek() {}
-    public void getDailyFitnessRecord() {}
-    public void getPersonalRecord() {}
-    public void displayEmployeeList() {}
-    public void displayReport() {}
+    public void displayAchievements() {
+        achieve = new viewAchievements();
+    }
 
     public void viewAdminReports() {
         viewReps = new employeeReports();
