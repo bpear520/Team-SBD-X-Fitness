@@ -8,23 +8,13 @@ public class Employee {
     private String password;
 
 
-    public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, Achievement achievements, String password) {
-
-        this.setFitnessRecord(fitnessRecord);
-        this.setPersonalrecods(personalrecods);
-        this.setAchievements(achievements);
-        this.setPassword(password);
-
-    }
+    public Employee() {}
 
     public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, String password) {
-
         this.setFitnessRecord(fitnessRecord);
         this.setPersonalrecods(personalrecods);
         this.setPassword(password);
     }
-
-    public Employee() {}
 
     public void setFitnessRecord(ArrayList<DailyFitnessRecord> fitnessRecord) {
         if(fitnessRecord == null) {
@@ -32,8 +22,6 @@ public class Employee {
         } else {
             this.dailyFitnessRecords = fitnessRecord;
         }
-
-
     }
 
     public Employee(PersonalRecord personalrecods2, String password) {
