@@ -1,18 +1,9 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 
 
 public class inputDailyRecord extends Display implements ActionListener {
@@ -20,6 +11,9 @@ public class inputDailyRecord extends Display implements ActionListener {
     Controller controller = Controller.getInstance();
 
     private static JFrame frame;
+    private static JPanel panel;
+
+    private static JLabel statusLabel;
 
     private static JTextField userCalories;
 
@@ -33,7 +27,6 @@ public class inputDailyRecord extends Display implements ActionListener {
 
 
     inputDailyRecord() {
-
         frame = new JFrame();
 
         frame.setSize(420, 420);
@@ -41,7 +34,7 @@ public class inputDailyRecord extends Display implements ActionListener {
         frame.setLocationRelativeTo(null);
 
 
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         // adding panel to frame
         frame.add(panel);
 
@@ -52,7 +45,6 @@ public class inputDailyRecord extends Display implements ActionListener {
 
 
     private void placeComponents(JPanel panel) {
-
         JLabel label;
         panel.setLayout(null);
         Color color = new Color(103, 146, 103);
@@ -101,28 +93,36 @@ public class inputDailyRecord extends Display implements ActionListener {
         backToMainButton.addActionListener(inputDailyRecord.this);
         panel.add(backToMainButton);
 
+        // Creating space for status message
+        statusLabel = new JLabel("");
+        statusLabel.setBounds(10, 180, 120, 25);
+        panel.add(statusLabel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == submitButton) {
-            Date thisDate = new Date();
-            SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y");
-            String date = dateForm.format(thisDate);
+            try {
+                Date thisDate = new Date();
+                SimpleDateFormat dateForm = new SimpleDateFormat("MM/dd/Y");
+                String date = dateForm.format(thisDate);
 
-            int calories = Integer.parseInt(userCalories.getText());
-            boolean wrkedOut = workedOut.isSelected();
+                int calories = Integer.parseInt(userCalories.getText());
+                boolean wrkedOut = workedOut.isSelected();
 
-            String sleepQual = sleepQuality[sleepType.getSelectedIndex()];
+                String sleepQual = sleepQuality[sleepType.getSelectedIndex()];
 
-            DailyFitnessRecord newRec = new DailyFitnessRecord(date, sleepQual, calories, wrkedOut);
+                DailyFitnessRecord newRec = new DailyFitnessRecord(date, sleepQual, calories, wrkedOut);
 
-            controller.getCurrentUser().getFitnessRecords().add(newRec);
-            controller.writeToFile();
+                controller.getCurrentUser().getFitnessRecords().add(newRec);
+                controller.writeToFile();
 
-            frame.dispose();
-            displayMainMenu();
+                frame.dispose();
+                displayMainMenu();
+            } catch (Exception a) {
+                statusLabel.setText("*Please fill in Calories");
+            }
         }
 
         if (e.getSource() == backToMainButton) {
