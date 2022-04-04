@@ -34,9 +34,7 @@ public class viewFitnessRecord extends Display implements ActionListener {
 
         // adding panel to frame
         frame.add(panel);
-
         placeComponents(panel);
-
         frame.setVisible(true);
 
     }
@@ -78,7 +76,7 @@ public class viewFitnessRecord extends Display implements ActionListener {
         label.setBounds(10, 180, 120, 25);
         panel.add(label);
 
-        if(hasRecord()) {
+        if(hasRecord() && recordIndex >= 0) {
             // Creating user outputs
             dateOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getDate());
             dateOutput.setBounds(145, 60, 120, 25);
