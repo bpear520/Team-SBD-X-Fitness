@@ -1,7 +1,12 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class employeeReports extends Display implements ActionListener {
 
@@ -17,7 +22,7 @@ public class employeeReports extends Display implements ActionListener {
     private static JButton nextEmpButton;
 
     Controller controller = Controller.getInstance();
-    private int numberOfEmployees = controller.getNumberOfEmployees() - 1;
+    private int employeeIndex = controller.getNumberOfEmployees() - 1;
 
     employeeReports() {
         frame = new JFrame();
@@ -66,19 +71,19 @@ public class employeeReports extends Display implements ActionListener {
 
 
         // Creating employee output labels
-        employeeOutput = new JLabel("###");
+        employeeOutput = new JLabel(controller.getEmployeeList().get(employeeIndex).getPersonalrecods().getFirstName());
         employeeOutput.setBounds(210, 60, 175, 25);
         panel.add(employeeOutput);
 
-        caloriesOutput = new JLabel("###");
+        caloriesOutput = new JLabel(String.valueOf(controller.getEmployeeList().get(employeeIndex).getAverageCalories()));
         caloriesOutput.setBounds(210, 100, 175, 25);
         panel.add(caloriesOutput);
 
-        workoutOutput = new JLabel("###");
+        workoutOutput = new JLabel(String.valueOf(controller.getEmployeeList().get(employeeIndex).getNumTimesWorkedOut()));
         workoutOutput.setBounds(210, 140, 175, 25);
         panel.add(workoutOutput);
 
-        sleepQualityOutput = new JLabel("###");
+        sleepQualityOutput = new JLabel(controller.getEmployeeList().get(employeeIndex).getAverageSleepQuality());
         sleepQualityOutput.setBounds(210, 180, 175, 25);
         panel.add(sleepQualityOutput);
 
@@ -102,8 +107,36 @@ public class employeeReports extends Display implements ActionListener {
 
     }
 
+    public boolean hasEmployees() {
+        if(controller.employeeList == null)
+            return false;
+        else
+            return true;
+    }
+
+    public void updateOutputs() {
+        employeeOutput.setText(controller.getEmployeeList().get(employeeIndex).getPersonalrecods().getFirstName());
+        caloriesOutput.setText(String.valueOf(controller.getEmployeeList().get(employeeIndex).getAverageCalories()));
+        workoutOutput.setText(String.valueOf(controller.getEmployeeList().get(employeeIndex).getNumTimesWorkedOut()));
+        sleepQualityOutput.setText(controller.getEmployeeList().get(employeeIndex).getAverageSleepQuality());
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource() == prevEmpButton) {
+            if(employeeIndex > 0) {
+                employeeIndex--;
+            }
+            updateOutputs();
+        }
+
+        if(e.getSource() == nextEmpButton) {
+            if(employeeIndex < controller.getNumberOfEmployees() - 1) {
+                employeeIndex++;
+            }
+            updateOutputs();
+        }
 
         if (e.getSource() == backToMainButton) {
             frame.dispose();
