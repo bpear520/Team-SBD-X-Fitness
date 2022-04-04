@@ -1,17 +1,9 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 
 public class inputDailyRecord extends Display implements ActionListener {
@@ -24,7 +16,7 @@ public class inputDailyRecord extends Display implements ActionListener {
     private static JLabel statusLabel;
 
     private static JTextField userCalories;
-
+    private static JTextField userWeight;
     private static JCheckBox workedOut;
 
     private static String[] sleepQuality = {"Poor", "Okay", "Great"};
@@ -64,46 +56,54 @@ public class inputDailyRecord extends Display implements ActionListener {
         label.setFont(new Font(null, Font.PLAIN, 25));
         panel.add(label);
 
-        label = new JLabel("Calories Consumed:");
-        label.setBounds(10, 60, 120, 25);
+        label = new JLabel("Calories consumed:");
+        label.setBounds(10, 60, 150, 25);
+        panel.add(label);
+
+        label = new JLabel("Current weight:");
+        label.setBounds(10, 90, 150, 25);
         panel.add(label);
 
         label = new JLabel("Did you workout?");
-        label.setBounds(10, 90, 120, 25);
+        label.setBounds(10, 120, 150, 25);
         panel.add(label);
 
         label = new JLabel("How was your sleep?");
-        label.setBounds(10, 120, 130, 25);
+        label.setBounds(10, 150, 150, 25);
         panel.add(label);
 
         //Creating user fields
         userCalories = new JTextField(20);
-        userCalories.setBounds(150, 60, 85, 25); //20
+        userCalories.setBounds(180, 60, 85, 25); //20
         panel.add(userCalories);
 
+        userWeight = new JTextField(20);
+        userWeight.setBounds(180, 90, 85, 25); //20
+        panel.add(userWeight);
+
         workedOut = new JCheckBox();
-        workedOut.setBounds(150, 90, 25, 25);
+        workedOut.setBounds(180, 120, 25, 25);
         panel.add(workedOut);
 
         sleepType = new JComboBox(sleepQuality);
-        sleepType.setBounds(150, 120, 65, 25);
+        sleepType.setBounds(180, 150, 65, 25);
         panel.add(sleepType);
 
         // Creating login button
         submitButton = new JButton("submit");
-        submitButton.setBounds(25, 150, 125, 25); //80
+        submitButton.setBounds(25, 180, 125, 25); //80
         submitButton.addActionListener(inputDailyRecord.this);
         panel.add(submitButton);
 
         // Creating back button
         backToMainButton = new JButton("Back to main menu");
-        backToMainButton.setBounds(210, 150, 150, 25);
+        backToMainButton.setBounds(210, 180, 150, 25);
         backToMainButton.addActionListener(inputDailyRecord.this);
         panel.add(backToMainButton);
 
         // Creating space for status message
         statusLabel = new JLabel("");
-        statusLabel.setBounds(10, 180, 120, 25);
+        statusLabel.setBounds(10, 210, 150, 25);
         panel.add(statusLabel);
     }
 
@@ -130,7 +130,7 @@ public class inputDailyRecord extends Display implements ActionListener {
                 frame.dispose();
                 displayMainMenu();
             } catch (Exception a) {
-               statusLabel.setText("*Please fill in Calories");
+                statusLabel.setText("*Please fill in all fields.");
             }
         }
 
