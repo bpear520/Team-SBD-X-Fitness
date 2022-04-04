@@ -51,10 +51,11 @@ public class DataBase{
                 String password = lineFrag[20];
 
                 PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight, isAdmin);
-
                 Employee newEmp = new Employee(fitnessRecord, pr, password);
-                employeeList.add(newEmp);
+                Achievement newAchievement = new Achievement(newEmp);
+                newEmp.setAchievements(newAchievement);
 
+                employeeList.add(newEmp);
             }
             fileReader.close();
         } catch (FileNotFoundException  error )
