@@ -90,36 +90,45 @@ public class viewAchievements extends Display implements ActionListener {
         if(hasAchievements()) {
           //Creating Achievement checkers
             if(controller.getCurrentUser().getAchievements().isTenDailyWorkout()) {
+                imageLabel = new JLabel();
                 imageLabel.setBounds(155,40,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
             if(controller.getCurrentUser().getAchievements().isTwentyDailyWorkout()) {
+                imageLabel = new JLabel();
                 imageLabel.setBounds(155,80,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
             if(controller.getCurrentUser().getAchievements().isThreePerfectDays()) {
+                imageLabel = new JLabel();
                 imageLabel.setBounds(155,120,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
             if(controller.getCurrentUser().getAchievements().isSixPerfectDays()) {
-                imageLabel.setBounds(255,40,50,50);
+                imageLabel = new JLabel();
+                imageLabel.setBounds(355,40,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
             if(controller.getCurrentUser().getAchievements().isTwentyPerfectDays()) {
-                imageLabel.setBounds(255,80,50,50);
+                imageLabel = new JLabel();
+                imageLabel.setBounds(355,80,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
-            if(controller.getCurrentUser().getAchievements().isGoalWeight()) {
-                imageLabel.setBounds(255,120,50,50);
+            if(controller.getCurrentUser().getAchievements().isGoalWeightReached()) {
+                imageLabel = new JLabel();
+                imageLabel.setBounds(355,120,50,50);
                 imageLabel.setIcon(image);
                 panel.add(imageLabel);
             }
         }
+
+
+
 
         //Creating back to main menu button
         backToMainButton = new JButton("Back to main menu");
