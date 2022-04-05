@@ -10,10 +10,13 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, String password) {
+    public Employee(ArrayList<DailyFitnessRecord> fitnessRecord, PersonalRecord personalrecods, String password, Achievement achievements) {
+
+
         this.setFitnessRecord(fitnessRecord);
         this.setPersonalrecods(personalrecods);
         this.setPassword(password);
+        this.achievements = achievements;
     }
 
     public void setFitnessRecord(ArrayList<DailyFitnessRecord> fitnessRecord) {
@@ -112,12 +115,12 @@ public class Employee {
     public String formatToFile() {
         String toFile;
         setNumFitnessRecords();
-        toFile = personalRecord.formatToFile() +
+        toFile = personalRecord.formatToFile() + password + ";" + achievements.formatToFile() +
                  numFitnessRecords + ";";
         for(int i = 0; i < numFitnessRecords; i++) {
             toFile = toFile +  dailyFitnessRecords.get(i).formatToFile();
         }
-        toFile += password + ";\n";
+        toFile += "\n";
         return toFile;
     }
 
@@ -186,11 +189,6 @@ public class Employee {
         } else {
             roundedSleepNum = (int) Math.rint(sleepNum);
         }
-
-
-
-
-
         switch(roundedSleepNum) {
             case 1: rtnSleepQual = "Poor";
                 break;
