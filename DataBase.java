@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class DataBase{
     public ArrayList<Employee> employeeList = new ArrayList<Employee>();
-    private ArrayList<DailyFitnessRecord> fitnessRecord = new ArrayList<DailyFitnessRecord>();
+
     private int employeeCount = 0;
     public DataBase() {}
 
@@ -22,39 +22,23 @@ public class DataBase{
             while(fileReader.hasNextLine()) {
                 String currentLine = fileReader.nextLine();
                 String lineFrag[] = currentLine.split(";");
+                ArrayList<DailyFitnessRecord> fitnessRecord = new ArrayList<DailyFitnessRecord>();
 
-                String surName = lineFrag[0];
-                String firstName = lineFrag[1];
-                String otherName = lineFrag[2];
-                String gender = lineFrag[3];
-                String title = lineFrag[4];
-                String DOB = lineFrag[5];
-                String department = lineFrag[6];
-                int height = Integer.parseInt(lineFrag[7]);
-                int weight = Integer.parseInt(lineFrag[8]);
-                int goalWeight = Integer.parseInt(lineFrag[9]);
-                boolean isAdmin = Boolean.parseBoolean(lineFrag[10]);
-                int numFitnessRecords = Integer.parseInt(lineFrag[11]);
+                PersonalRecord pr = buildPersonalRecord(lineFrag);
+                String password = lineFrag[11];
+                Achievement newAchievement = buildAcheivements(lineFrag);
+                int numFitnessRecords = Integer.parseInt(lineFrag[18]);
 
-                int j = 12; //Fitness records will always start at index 12, add four at the end of the loop to increment to the next fitness record
+                int j = 19; //Fitness records will always start at index 19, add four at the end of the loop to increment to the next fitness record
                 for(int i = 0; i < numFitnessRecords; i++) {
 
-                    String fitnessRec_date = lineFrag[j];
-                    String fitnessRec_sleepQual = lineFrag[j+1];
-                    int fitnessRec_cal = Integer.parseInt(lineFrag[j+2]);
-                    boolean fitnessRec_workedOut = Boolean.parseBoolean(lineFrag[j+3]);
+                    DailyFitnessRecord newRec = buildFitnessRecord(lineFrag, j);
 
-                    DailyFitnessRecord newRec = new DailyFitnessRecord(fitnessRec_date, fitnessRec_sleepQual, fitnessRec_cal, fitnessRec_workedOut);
                     fitnessRecord.add(newRec);
-                    j += 4;
+                    j += 5;
                 }
-                String password = lineFrag[20];
 
-                PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight, isAdmin);
-                Employee newEmp = new Employee(fitnessRecord, pr, password);
-                Achievement newAchievement = new Achievement(newEmp);
-                newEmp.setAchievements(newAchievement);
-
+                Employee newEmp = new Employee(fitnessRecord, pr, password, newAchievement);
                 employeeList.add(newEmp);
             }
             fileReader.close();
@@ -62,11 +46,62 @@ public class DataBase{
         {
             System.out.println("File Not Found");
         }
-
-        System.out.println(employeeList.size());
     }
 
-    public boolean writeToFile() {
+    /**
+     * @param lineFrag
+     * @param j
+     * @return
+     */
+    private DailyFitnessRecord buildFitnessRecord(String[] lineFrag, int j) {
+
+        String fitnessRec_date = lineFrag[j];
+        String fitnessRec_sleepQual = lineFrag[j+1];
+        int fitnessRec_cal = Integer.parseInt(lineFrag[j+2]);
+        boolean fitnessRec_workedOut = Boolean.parseBoolean(lineFrag[j+3]);
+        int fitnessRec_currentWeight = Integer.parseInt(lineFrag[j+4]);
+
+        DailyFitnessRecord newRec = new DailyFitnessRecord(fitnessRec_date, fitnessRec_sleepQual, fitnessRec_cal, fitnessRec_workedOut, fitnessRec_currentWeight);
+        return newRec;
+    }
+
+    /**
+     * @param lineFrag
+     * @return
+     */
+    private Achievement buildAcheivements(String[] lineFrag) {
+        boolean tenDailyWorkouts = Boolean.parseBoolean(lineFrag[12]);
+        boolean twentyDailyWorkouts = Boolean.parseBoolean(lineFrag[13]);
+        boolean threePerfectDays = Boolean.parseBoolean(lineFrag[14]);
+        boolean sixPerfectDays = Boolean.parseBoolean(lineFrag[15]);
+        boolean twentyPerfectDays = Boolean.parseBoolean(lineFrag[16]);
+        boolean goalWeightReached = Boolean.parseBoolean(lineFrag[17]);
+
+        Achievement newAchievement = new Achievement(tenDailyWorkouts, twentyDailyWorkouts, threePerfectDays, sixPerfectDays, twentyPerfectDays, goalWeightReached);
+        return newAchievement;
+    }
+
+    /**
+     * @param lineFrag
+     * @return
+     */
+    private PersonalRecord buildPersonalRecord(String[] lineFrag) {
+        String surName = lineFrag[0];
+        String firstName = lineFrag[1];
+        String otherName = lineFrag[2];
+        String gender = lineFrag[3];
+        String title = lineFrag[4];
+        String DOB = lineFrag[5];
+        String department = lineFrag[6];
+        int height = Integer.parseInt(lineFrag[7]);
+        int weight = Integer.parseInt(lineFrag[8]);
+        int goalWeight = Integer.parseInt(lineFrag[9]);
+        boolean isAdmin = Boolean.parseBoolean(lineFrag[10]);
+        PersonalRecord pr = new PersonalRecord(firstName, surName, otherName, gender, title, DOB, department, height, weight, goalWeight, isAdmin);
+        return pr;
+    }
+
+    public void writeToFile() {
         try {
             FileWriter writer = new FileWriter("x_fitness_db1.txt");
 
@@ -74,9 +109,8 @@ public class DataBase{
                 writer.write(employeeList.get(i).formatToFile());
             }
             writer.close();
-            return true;
         } catch (IOException error) {
-            return false;
+            System.out.println("problem saving");
         }
     }
 
