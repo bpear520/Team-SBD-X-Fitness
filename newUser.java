@@ -1,7 +1,16 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class newUser extends Display implements ActionListener {
 
@@ -199,7 +208,8 @@ public class newUser extends Display implements ActionListener {
                 boolean admin = isAdmin.isSelected();
 
                 PersonalRecord newPR = new PersonalRecord(firstName, lastName, otherName, gender, title, DOB, depart, height, curWeight, goalWeight, admin);
-                Employee emp = new Employee(null, newPR, String.valueOf(password));
+                Achievement newAchiev = new Achievement(false, false, false, false, false, false);
+                Employee emp = new Employee(null, newPR, String.valueOf(password), newAchiev);
                 controller.createNewUser(emp);
                 controller.setCurrentUser(firstName, String.valueOf(password));
                 controller.writeToFile();
@@ -207,6 +217,7 @@ public class newUser extends Display implements ActionListener {
                 displayLogin();
             } catch (Exception a) {
                 statusLabel.setText("*Please fill in all fields");
+                System.out.println(a.getMessage());
             }
         }
 
