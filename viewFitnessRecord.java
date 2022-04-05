@@ -1,12 +1,7 @@
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class viewFitnessRecord extends Display implements ActionListener {
 
@@ -15,6 +10,7 @@ public class viewFitnessRecord extends Display implements ActionListener {
     private static JButton previousWeekButton;
     private static JButton nextWeekButton;
     private JLabel caloriesOutput;
+    private JLabel weightOutput;
     private JLabel sleepQualityOutput;
     private JLabel workedOutOutput;
     private JLabel recordStatus;
@@ -68,12 +64,16 @@ public class viewFitnessRecord extends Display implements ActionListener {
         label.setBounds(10, 100, 120, 25);
         panel.add(label);
 
-        label = new JLabel("Sleep Quality:");
+        label = new JLabel("Weight:");
         label.setBounds(10, 140, 120, 25);
         panel.add(label);
 
-        label = new JLabel("Worked Out:");
+        label = new JLabel("Sleep Quality:");
         label.setBounds(10, 180, 120, 25);
+        panel.add(label);
+
+        label = new JLabel("Worked Out:");
+        label.setBounds(10, 220, 120, 25);
         panel.add(label);
 
         if(hasRecord() && recordIndex >= 0) {
@@ -86,17 +86,21 @@ public class viewFitnessRecord extends Display implements ActionListener {
             caloriesOutput.setBounds(110, 100, 120, 25);
             panel.add(caloriesOutput);
 
+            weightOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex)); //Put get weight here.
+            weightOutput.setBounds(110, 140, 120, 25);
+            panel.add(weightOutput);
+
             // Creating JLabel
             sleepQualityOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getSleepQuality());
-            sleepQualityOutput.setBounds(110, 140, 120, 25);
+            sleepQualityOutput.setBounds(110, 180, 120, 25);
             panel.add(sleepQualityOutput);
 
             // Creating JLabel
             workedOutOutput = new JLabel(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).isWorkedOut()));
-            workedOutOutput.setBounds(110, 180, 120, 25);
+            workedOutOutput.setBounds(110, 220, 120, 25);
             panel.add(workedOutOutput);
         } else {
-         // Creating user outputs
+            // Creating user outputs
             dateOutput = new JLabel(" ");
             dateOutput.setBounds(145, 60, 120, 25);
             panel.add(dateOutput);
@@ -105,14 +109,18 @@ public class viewFitnessRecord extends Display implements ActionListener {
             caloriesOutput.setBounds(110, 100, 120, 25);
             panel.add(caloriesOutput);
 
+            weightOutput = new JLabel(" ");
+            weightOutput.setBounds(145, 140, 120, 25);
+            panel.add(weightOutput);
+
             // Creating JLabel
             sleepQualityOutput = new JLabel(" ");
-            sleepQualityOutput.setBounds(110, 140, 120, 25);
+            sleepQualityOutput.setBounds(110, 180, 120, 25);
             panel.add(sleepQualityOutput);
 
             // Creating JLabel
             workedOutOutput = new JLabel(" ");
-            workedOutOutput.setBounds(110, 180, 120, 25);
+            workedOutOutput.setBounds(110, 220, 120, 25);
             panel.add(workedOutOutput);
 
             recordStatus = new JLabel("Input Your First Record");
@@ -124,19 +132,19 @@ public class viewFitnessRecord extends Display implements ActionListener {
 
         // Creating input button
         previousWeekButton = new JButton("Previous Day");
-        previousWeekButton.setBounds(10, 220, 150, 25);
+        previousWeekButton.setBounds(10, 260, 150, 25);
         previousWeekButton.addActionListener(viewFitnessRecord.this);
         panel.add(previousWeekButton);
 
         // Creating input button
         nextWeekButton = new JButton("Next Day");
-        nextWeekButton.setBounds(210, 220, 150, 25);
+        nextWeekButton.setBounds(210, 260, 150, 25);
         nextWeekButton.addActionListener(viewFitnessRecord.this);
         panel.add(nextWeekButton);
 
         // Creating input button
         backToMainButton = new JButton("Back to main menu");
-        backToMainButton.setBounds(110, 260, 150, 25);
+        backToMainButton.setBounds(110, 300, 150, 25);
         backToMainButton.addActionListener(viewFitnessRecord.this);
         panel.add(backToMainButton);
 
