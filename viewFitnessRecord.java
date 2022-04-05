@@ -1,7 +1,12 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class viewFitnessRecord extends Display implements ActionListener {
 
@@ -86,7 +91,7 @@ public class viewFitnessRecord extends Display implements ActionListener {
             caloriesOutput.setBounds(110, 100, 120, 25);
             panel.add(caloriesOutput);
 
-            weightOutput = new JLabel(controller.getCurrentUser().getFitnessRecords().get(recordIndex)); //Put get weight here.
+            weightOutput = new JLabel(String.valueOf(controller.getCurrentUser().getFitnessRecords().get(recordIndex).getWeight())); //Put get weight here.
             weightOutput.setBounds(110, 140, 120, 25);
             panel.add(weightOutput);
 
@@ -127,8 +132,6 @@ public class viewFitnessRecord extends Display implements ActionListener {
             recordStatus.setBounds(10,350,300,25); //110
             panel.add(recordStatus);
         }
-
-
 
         // Creating input button
         previousWeekButton = new JButton("Previous Day");
